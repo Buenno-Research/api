@@ -8,7 +8,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='mailto:info@buenno.fi'>Contact us for a Developer Key</a>
+  - <a href='mailto:info@buenno.fi'>Contact us for a API Key</a>
 
 includes:
   - errors
@@ -19,221 +19,179 @@ code_clipboard: true
 
 ---
 
-# Introduction
+# Buenno API Reference
 
-Welcome to the Buenno API! You can use our API to access Buenno API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+The Buenno API s organized around REST. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
 
 # Authentication
 
-> To authorize, use this code:
+The Buenno API uses API keys to authenticate requests. To send any request to our api, include `api-auth-token to the request header.
 
-```ruby
-require 'kittn'
+Your API keys carry many privileges, so be sure to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, client-side code, and so forth.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+<a href='mailto:info@buenno.fi'>Contact us for a API Key</a>
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+> GET /api/v01/token-info
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+# Include your api-auth-token to each request
+curl --location --request GET 'https://buenno-research.io/api/v01/token-info' \
+--header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
 ```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> Response:
 
 ```json
-[
+{
+  "token-info": 
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "company_id": 1,
+    "company_name": "Example Company Ltd",
+    "contact_person": "John Doe"
   }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
 }
 ```
 
-This endpoint retrieves a specific kitten.
+# Errors
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+The Buenno API uses following status codes on errors.
 
-### HTTP Request
+Code | Possible cause
+--------- | ---- 
+401 | api-auth-token not found or invalid
+403 | Action is not allowed to perform right now.
+404 | If the given id not found or invalid
+405 | Method (GET/PUT/POST/PATCH/DELETE) is not allowed
+409 | Created item with a given key already exists
 
-`GET http://example.com/kittens/<ID>`
+> Example of json error response:
+
+```json
+{
+  "error_message": "Sorry, method not allowed."
+}
+```
+
+# Survey
+
+Survey definition here so that developer understands it. Survey questions and settings are by Buenno staff.
+
+## List surveys
+
+Get a list of surveys.
+
+### URL Parameters (optional)
+
+Parameter | Type | Description
+--------- | ---- | -----------
+active (optional) | Boolean | Filter by ongoing surveys
+starting_after (optional) | Timestamp | 
+ending_before (optional) | Timestamp |
+limit (optional) | Integer | Limit results
+offset (optional) | Integer | Offset results
+
+> GET /api/v01/surveys
+```shell
+curl --location --request GET 'https://buenno-research.io/api/v01/surveys' \
+--header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
+-d 'active=true' \
+-d 'starting_after=1234567890' \
+-d 'ending_before=1234567890' \
+-d 'limit=100' \
+-d 'offset=0'
+```
+> Response
+
+```json
+{
+  "surveys": [
+    {
+      "id": 1,
+      "name": "Survey name",
+      "active": true,
+      "updated_at": "2020-12-19T00:00:00+00:00",
+      "created_at": "2020-12-18T00:00:00+00:00"
+    }
+  ]
+}
+```
+
+# Invitations
+
+Use following endpoints to invite users to answer survey questions via email or SMS. Message content to email or SMS is created automatically by Buenno.
+
+## Create invitation
+
+Invite user to answer to a survey. Returns `409` if invitation with given identifier exists.
+
+Returns `403` if survey is not active.
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+:id | Active survey id
+invitation_id | Phone number or email
 
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
+> POST /api/v01/surveys/:id/invite
 ```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
+curl --location --request POST '/api/v01/surveys/:id/invite' \
+--header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
+-d 'invitation_id=firstname.lastname@example.com'
 ```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> Response
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "invitation": {
+    "id": 1,
+    "survey_id": 1,
+    "invitation_id": "+358441234567",
+    "updated_at": "2020-12-18T00:00:00+00:00",
+    "created_at": "2020-12-18T00:00:00+00:00"
+  }
 }
 ```
 
-This endpoint deletes a specific kitten.
+## List invitations
 
-### HTTP Request
+Lists created invitations.
 
-`DELETE http://example.com/kittens/<ID>`
+# Replies
 
-### URL Parameters
+## List
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+Get a list of replies and their results. Individual answers
 
+> GET /api/v01/surveys/:id/replies
+```shell
+curl --location --request GET '/api/v01/surveys/1/replies' \
+--header 'api-auth-key: 4704c2a7-3646-42ce-9cf1-15e1935d49d3' \
+-d 'starting_after=' \
+-d 'ending_before=' \
+-d 'limit=100'
+```
+> Response
+
+```json
+{
+  "replies": [
+    {
+      "id": 1,
+      "name": "Survey name",
+      "invite_id": "+358441234567",
+      "user_email": "",
+      "user_phone": "+358441234567",
+      "updated_at": "2020-12-19T00:00:00+00:00",
+      "created_at": "2020-12-18T00:00:00+00:00"
+    }
+  ]
+}
+```
+
+# Answers
+
+Get individual reply answers.
+
+# Reports
+
+Get survey reports.
