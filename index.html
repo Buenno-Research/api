@@ -288,7 +288,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -299,9 +299,6 @@
       <img src="images/logo-61f1a509.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -465,17 +462,18 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </tbody></table>
 
 <blockquote>
-<p>GET /api/v01/surveys
-<code>shell
-curl --location --request GET &#39;https://buenno-research.io/api/v01/surveys&#39; \
---header &#39;api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#39; \
--d &#39;active=true&#39; \
--d &#39;starting_after=1234567890&#39; \
--d &#39;ending_before=1234567890&#39; \
--d &#39;limit=100&#39; \
--d &#39;offset=0&#39;
-</code>
-Response</p>
+<p>GET /api/v01/surveys</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://buenno-research.io/api/v01/surveys'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'active=true'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'starting_after=1234567890'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'ending_before=1234567890'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'limit=100'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'offset=0'</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"surveys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -512,13 +510,14 @@ Response</p>
 </tbody></table>
 
 <blockquote>
-<p>POST /api/v01/surveys/:id/invite
-<code>shell
-curl --location --request POST &#39;/api/v01/surveys/:id/invite&#39; \
---header &#39;api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#39; \
--d &#39;invitation_id=firstname.lastname@example.com&#39;
-</code>
-Response</p>
+<p>POST /api/v01/surveys/:id/invite</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'/api/v01/surveys/:id/invite'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'invitation_id=firstname.lastname@example.com'</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"invitation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -535,15 +534,16 @@ Response</p>
 <p>Get a list of replies and their results. Individual answers</p>
 
 <blockquote>
-<p>GET /api/v01/surveys/:id/replies
-<code>shell
-curl --location --request GET &#39;/api/v01/surveys/1/replies&#39; \
---header &#39;api-auth-key: 4704c2a7-3646-42ce-9cf1-15e1935d49d3&#39; \
--d &#39;starting_after=&#39; \
--d &#39;ending_before=&#39; \
--d &#39;limit=100&#39;
-</code>
-Response</p>
+<p>GET /api/v01/surveys/:id/replies</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'/api/v01/surveys/1/replies'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'api-auth-key: 4704c2a7-3646-42ce-9cf1-15e1935d49d3'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'starting_after='</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'ending_before='</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'limit=100'</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"replies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -625,9 +625,6 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
