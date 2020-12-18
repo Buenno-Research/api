@@ -3,9 +3,6 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='mailto:info@buenno.fi'>Contact us for a API Key</a>
@@ -38,6 +35,7 @@ Your API keys carry many privileges, so be sure to keep them secure! Do not shar
 curl --location --request GET 'https://buenno-research.io/api/v01/token-info' \
 --header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
 ```
+
 > Response:
 
 ```json
@@ -90,6 +88,7 @@ limit (optional) | Integer | Limit results
 offset (optional) | Integer | Offset results
 
 > GET /api/v01/surveys
+
 ```shell
 curl --location --request GET 'https://buenno-research.io/api/v01/surveys' \
 --header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
@@ -99,6 +98,7 @@ curl --location --request GET 'https://buenno-research.io/api/v01/surveys' \
 -d 'limit=100' \
 -d 'offset=0'
 ```
+
 > Response
 
 ```json
@@ -133,11 +133,13 @@ Parameter | Description
 invitation_id | Phone number or email
 
 > POST /api/v01/surveys/:id/invite
+
 ```shell
 curl --location --request POST '/api/v01/surveys/:id/invite' \
 --header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
 -d 'invitation_id=firstname.lastname@example.com'
 ```
+
 > Response
 
 ```json
@@ -163,6 +165,7 @@ Lists created invitations.
 Get a list of replies and their results. Individual answers
 
 > GET /api/v01/surveys/:id/replies
+
 ```shell
 curl --location --request GET '/api/v01/surveys/1/replies' \
 --header 'api-auth-key: 4704c2a7-3646-42ce-9cf1-15e1935d49d3' \
@@ -170,6 +173,7 @@ curl --location --request GET '/api/v01/surveys/1/replies' \
 -d 'ending_before=' \
 -d 'limit=100'
 ```
+
 > Response
 
 ```json
