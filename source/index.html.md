@@ -27,6 +27,8 @@ Your API keys carry many privileges, so be sure to keep them secure! Do not shar
 
 ## Get token info
 
+Test that your api-auth-token is valid. Token info includes information of accessible forms.
+
 > GET /api/v01/token-info
 
 ```shell
@@ -35,7 +37,7 @@ curl --location --request GET 'https://buenno-research.io/api/v01/token-info' \
 --header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
 ```
 
-> Response
+> Response:
 
 ```json
 {
@@ -52,8 +54,6 @@ curl --location --request GET 'https://buenno-research.io/api/v01/token-info' \
   }
 }
 ```
-
-Test that your api-auth-token is valid. Token info includes information of accessible forms.
 
 # Errors
 
@@ -80,6 +80,8 @@ Code | Possible cause
 Use following endpoints to invite users to answer question form. Message content to email or SMS is created automatically by Buenno.
 
 ## Create invitation
+
+Invite customers to answer to a survey. Use prefilled parameters (pf_) to fill required questions for the customer. If prefilled field is missing, the corresponding question will be asked from the customer.
 
 > POST /api/v01/invitations
 
@@ -114,8 +116,6 @@ curl --location --request POST '/api/v01/invitations/' \
 }
 ```
 
-Invite customers to answer to a survey. Use prefilled parameters (pf_) to fill required questions for the customer. If prefilled field is missing, the corresponding question will be asked from the customer.
-
 ### Exeptions
 
 Returns `409` if invitation with given identifier exists.
@@ -141,6 +141,8 @@ pf_gender | Customer gender | String | No
 pf_age | Customer age | Integer | No
 
 ## List invitations
+
+Lists created invitations.
 
 > GET /api/v01/invitations
 
@@ -176,8 +178,6 @@ curl --location --request GET '/api/v01/invitations/' \
 }
 ```
 
-Lists created invitations.
-
 ### URL Parameters
 
 Parameter | Description | Type | Mandatory
@@ -187,6 +187,8 @@ form_id | Field to identify form in a case when api-auth-token has access to mor
 # Replies
 
 ## List
+
+Get a list of replies and their answers. 
 
 > GET /api/v01/replies
 
@@ -218,8 +220,6 @@ curl --location --request GET '/api/v01/replies' \
   ]
 }
 ```
-
-Get a list of replies and their answers.
 
 ### URL Parameters
 
