@@ -27,8 +27,6 @@ Your API keys carry many privileges, so be sure to keep them secure! Do not shar
 
 ## Get token info
 
-Test that your api-auth-token is valid. Token info includes information of accessible forms.
-
 > GET /api/v01/token-info
 
 ```shell
@@ -37,7 +35,7 @@ curl --location --request GET 'https://buenno-research.io/api/v01/token-info' \
 --header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
 ```
 
-> Response:
+> Response
 
 ```json
 {
@@ -54,6 +52,8 @@ curl --location --request GET 'https://buenno-research.io/api/v01/token-info' \
   }
 }
 ```
+
+Test that your api-auth-token is valid. Token info includes information of accessible forms.
 
 # Errors
 
@@ -80,8 +80,6 @@ Code | Possible cause
 Use following endpoints to invite users to answer question form. Message content to email or SMS is created automatically by Buenno.
 
 ## Create invitation
-
-Invite customers to answer to a survey. Use prefilled parameters (pf_) to fill required questions for the customer. If prefilled field is missing, the corresponding question will be asked from the customer.
 
 > POST /api/v01/invitations
 
@@ -116,6 +114,8 @@ curl --location --request POST '/api/v01/invitations/' \
 }
 ```
 
+Invite customers to answer to a survey. Use prefilled parameters (pf_) to fill required questions for the customer. If prefilled field is missing, the corresponding question will be asked from the customer.
+
 ### Exeptions
 
 Returns `409` if invitation with given identifier exists.
@@ -141,8 +141,6 @@ pf_gender | Customer gender | String | No
 pf_age | Customer age | Integer | No
 
 ## List invitations
-
-Lists created invitations.
 
 > GET /api/v01/invitations
 
@@ -178,6 +176,8 @@ curl --location --request GET '/api/v01/invitations/' \
 }
 ```
 
+Lists created invitations.
+
 ### URL Parameters
 
 Parameter | Description | Type | Mandatory
@@ -187,8 +187,6 @@ form_id | Field to identify form in a case when api-auth-token has access to mor
 # Replies
 
 ## List
-
-Get a list of replies and their answers. 
 
 > GET /api/v01/replies
 
@@ -221,6 +219,8 @@ curl --location --request GET '/api/v01/replies' \
 }
 ```
 
+Get a list of replies and their answers.
+
 ### URL Parameters
 
 Parameter | Description | Type | Mandatory
@@ -229,84 +229,3 @@ created_after | Answers after date | Date time ISO 8601  | No
 created_before | Answers before date | Date time ISO 8601 | No
 limit | Max number of rows to return, Default = 100 | Integer | No
 offset | Row number to start from. Default = 0 | Integer | No
-
-[comment]: <> (# Survey)
-
-[comment]: <> (Survey definition here so that developer understands it. Survey questions and settings are by Buenno staff.)
-
-[comment]: <> (## List surveys)
-
-[comment]: <> (Get a list of surveys.)
-
-[comment]: <> (### URL Parameters &#40;optional&#41;)
-
-[comment]: <> (Parameter | Type | Description)
-
-[comment]: <> (--------- | ---- | -----------)
-
-[comment]: <> (active &#40;optional&#41; | Boolean | Filter by ongoing surveys)
-
-[comment]: <> (starting_after &#40;optional&#41; | Timestamp | )
-
-[comment]: <> (ending_before &#40;optional&#41; | Timestamp |)
-
-[comment]: <> (limit &#40;optional&#41; | Integer | Limit results)
-
-[comment]: <> (offset &#40;optional&#41; | Integer | Offset results)
-
-[comment]: <> (> GET /api/v01/surveys)
-
-[comment]: <> (```shell)
-
-[comment]: <> (curl --location --request GET 'https://buenno-research.io/api/v01/surveys' \)
-
-[comment]: <> (--header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \)
-
-[comment]: <> (-d 'active=true' \)
-
-[comment]: <> (-d 'starting_after=1234567890' \)
-
-[comment]: <> (-d 'ending_before=1234567890' \)
-
-[comment]: <> (-d 'limit=100' \)
-
-[comment]: <> (-d 'offset=0')
-
-[comment]: <> (```)
-
-[comment]: <> (> Response)
-
-[comment]: <> (```json)
-
-[comment]: <> ({)
-
-[comment]: <> (  "surveys": [)
-
-[comment]: <> (    {)
-
-[comment]: <> (      "id": 1,)
-
-[comment]: <> (      "name": "Survey name",)
-
-[comment]: <> (      "active": true,)
-
-[comment]: <> (      "updated_at": "2020-12-19T00:00:00+00:00",)
-
-[comment]: <> (      "created_at": "2020-12-18T00:00:00+00:00")
-
-[comment]: <> (    })
-
-[comment]: <> (  ])
-
-[comment]: <> (})
-
-[comment]: <> (```)
-
-
-[comment]: <> (# Answers)
-
-[comment]: <> (Get individual reply answers.)
-
-[comment]: <> (# Reports)
-
-[comment]: <> (Get survey reports.)
