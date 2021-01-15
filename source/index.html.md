@@ -116,7 +116,7 @@ curl --location --request POST '/api/v01/invitations/' \
 }
 ```
 
-### Exeptions
+### Exceptions
 
 Returns `409` if invitation with given identifier exists.
 
