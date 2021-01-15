@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='mailto:info@buenno.fi'>Contact us for a API Key</a>
+  - <a href='mailto:info@buenno.fi'>Contact us for an API Key</a>
 
 search: true
 
@@ -83,30 +83,6 @@ Use following endpoints to invite users to answer question form. Message content
 
 Invite customers to answer to a survey. Use prefilled parameters (pf_) to fill required questions for the customer. If prefilled field is missing, the corresponding question will be asked from the customer.
 
-### Exeptions
-
-Returns `409` if invitation with given identifier exists.
-
-Returns `403` if no active form is present.
-
-Returns `404` if form_id is invalid.
-
-### URL Parameters
-
-Parameter | Description | Type | Mandatory
---------- | ----------- | ---- | --------
-invitation_id | Phone number or email | String | Yes
-form_id | Field to identify form in a case when api-auth-token has access to more than one form. If not filled first active survey form will be used. | Integer | No
-delay | Number of seconds to delay the invitation to the customer, default = 0 | Integer | No
-retries | Number of retries, default = 1 | Integer | No
-pf_timestamp | Time of the customer visit, purchase or interaction. | Integer | No
-pf_store | Name of the store where interaction happened | String | No
-pf_seller_name | Salesperson name | String | No
-pf_target | Acquisition target | String | No
-pf_name | Customer name | String | No
-pf_gender | Customer gender | String | No
-pf_age | Customer age | Integer | No
-
 > POST /api/v01/invitations
 
 ```shell
@@ -140,15 +116,33 @@ curl --location --request POST '/api/v01/invitations/' \
 }
 ```
 
-## List invitations
+### Exeptions
 
-Lists created invitations.
+Returns `409` if invitation with given identifier exists.
+
+Returns `403` if no active form is present.
+
+Returns `404` if form_id is invalid.
 
 ### URL Parameters
 
 Parameter | Description | Type | Mandatory
 --------- | ----------- | ---- | --------
+invitation_id | Phone number or email | String | Yes
 form_id | Field to identify form in a case when api-auth-token has access to more than one form. If not filled first active survey form will be used. | Integer | No
+delay | Number of seconds to delay the invitation to the customer, default = 0 | Integer | No
+retries | Number of retries, default = 1 | Integer | No
+pf_timestamp | Time of the customer visit, purchase or interaction. | Integer | No
+pf_store | Name of the store where interaction happened | String | No
+pf_seller_name | Salesperson name | String | No
+pf_target | Acquisition target | String | No
+pf_name | Customer name | String | No
+pf_gender | Customer gender | String | No
+pf_age | Customer age | Integer | No
+
+## List invitations
+
+Lists created invitations.
 
 > GET /api/v01/invitations
 
@@ -184,21 +178,17 @@ curl --location --request GET '/api/v01/invitations/' \
 }
 ```
 
+### URL Parameters
+
+Parameter | Description | Type | Mandatory
+--------- | ----------- | ---- | --------
+form_id | Field to identify form in a case when api-auth-token has access to more than one form. If not filled first active survey form will be used. | Integer | No
 
 # Replies
 
 ## List
 
 Get a list of replies and their answers. 
-
-### URL Parameters
-
-Parameter | Description | Type | Mandatory
---------- | ----------- | ---- | --------
-created_after | Answers after date | Date time ISO 8601  | No
-created_before | Answers before date | Date time ISO 8601 | No
-limit | Max number of rows to return, Default = 100 | Integer | No
-offset | Row number to start from. Default = 0 | Integer | No
 
 > GET /api/v01/replies
 
@@ -230,6 +220,15 @@ curl --location --request GET '/api/v01/replies' \
   ]
 }
 ```
+
+### URL Parameters
+
+Parameter | Description | Type | Mandatory
+--------- | ----------- | ---- | --------
+created_after | Answers after date | Date time ISO 8601  | No
+created_before | Answers before date | Date time ISO 8601 | No
+limit | Max number of rows to return, Default = 100 | Integer | No
+offset | Row number to start from. Default = 0 | Integer | No
 
 [comment]: <> (# Survey)
 
