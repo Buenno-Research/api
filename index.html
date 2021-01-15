@@ -310,17 +310,14 @@
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-token-info" class="toc-h2 toc-link" data-title="Get token info">Get token info</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
-          </li>
-          <li>
-            <a href="#survey" class="toc-h1 toc-link" data-title="Survey">Survey</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#list-surveys" class="toc-h2 toc-link" data-title="List surveys">List surveys</a>
-                  </li>
-              </ul>
           </li>
           <li>
             <a href="#invitations" class="toc-h1 toc-link" data-title="Invitations">Invitations</a>
@@ -341,15 +338,9 @@
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#answers" class="toc-h1 toc-link" data-title="Answers">Answers</a>
-          </li>
-          <li>
-            <a href="#reports" class="toc-h1 toc-link" data-title="Reports">Reports</a>
-          </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='mailto:info@buenno.fi'>Contact us for a API Key</a></li>
+            <li><a href='mailto:info@buenno.fi'>Contact us for an API Key</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -362,7 +353,9 @@
 
 <p>Your API keys carry many privileges, so be sure to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, client-side code, and so forth.</p>
 
-<p><a href='mailto:info@buenno.fi'>Contact us for a API Key</a></p>
+<p><a href='mailto:info@buenno.fi'>Contact us for an API Key</a></p>
+<h2 id='get-token-info'>Get token info</h2>
+<p>Test that your api-auth-token is valid. Token info includes information of accessible forms.</p>
 
 <blockquote>
 <p>GET /api/v01/token-info</p>
@@ -377,13 +370,18 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"token-info"</span><span class="p">:</span><span class="w"> 
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"company_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Company Ltd"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"contact_person"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example CRM token"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"forms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Form 2021"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Company Ltd"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='errors'>Errors</h1>
-<p>The Buenno API uses following status codes on errors.</p>
+<p>The Buenno API uses following HTTP status codes on errors.</p>
 
 <table><thead>
 <tr>
@@ -401,7 +399,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </tr>
 <tr>
 <td>404</td>
-<td>If the given id not found or invalid</td>
+<td>Given id not found or invalid</td>
 </tr>
 <tr>
 <td>405</td>
@@ -417,99 +415,99 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <p>Example of json error response:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sorry, method not allowed."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='survey'>Survey</h1>
-<p>Survey definition here so that developer understands it. Survey questions and settings are by Buenno staff.</p>
-<h2 id='list-surveys'>List surveys</h2>
-<p>Get a list of surveys.</p>
-<h3 id='url-parameters-optional'>URL Parameters (optional)</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>active (optional)</td>
-<td>Boolean</td>
-<td>Filter by ongoing surveys</td>
-</tr>
-<tr>
-<td>starting_after (optional)</td>
-<td>Timestamp</td>
-<td></td>
-</tr>
-<tr>
-<td>ending_before (optional)</td>
-<td>Timestamp</td>
-<td></td>
-</tr>
-<tr>
-<td>limit (optional)</td>
-<td>Integer</td>
-<td>Limit results</td>
-</tr>
-<tr>
-<td>offset (optional)</td>
-<td>Integer</td>
-<td>Offset results</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>GET /api/v01/surveys</p>
-</blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://buenno-research.io/api/v01/surveys'</span> <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'active=true'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'starting_after=1234567890'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'ending_before=1234567890'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'limit=100'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'offset=0'</span>
-</code></pre></div>
-<blockquote>
-<p>Response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"surveys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Survey name"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-19T00:00:00+00:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whoops! Something went wrong."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='invitations'>Invitations</h1>
-<p>Use following endpoints to invite users to answer survey questions via email or SMS. Message content to email or SMS is created automatically by Buenno.</p>
+<p>Use following endpoints to invite users to answer question form. Message content to email or SMS is created automatically by Buenno.</p>
 <h2 id='create-invitation'>Create invitation</h2>
-<p>Invite user to answer to a survey. Returns <code>409</code> if invitation with given identifier exists.</p>
+<p>Invite customers to answer to a survey. Use prefilled parameters (pf_) to fill required questions for the customer. If prefilled field is missing, the corresponding question will be asked from the customer.</p>
+<h3 id='exeptions'>Exeptions</h3>
+<p>Returns <code>409</code> if invitation with given identifier exists.</p>
 
-<p>Returns <code>403</code> if survey is not active.</p>
+<p>Returns <code>403</code> if no active form is present.</p>
+
+<p>Returns <code>404</code> if form_id is invalid.</p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>Type</th>
+<th>Mandatory</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>:id</td>
-<td>Active survey id</td>
-</tr>
-<tr>
 <td>invitation_id</td>
 <td>Phone number or email</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>form_id</td>
+<td>Field to identify form in a case when api-auth-token has access to more than one form. If not filled first active survey form will be used.</td>
+<td>Integer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>delay</td>
+<td>Number of seconds to delay the invitation to the customer, default = 0</td>
+<td>Integer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>retries</td>
+<td>Number of retries, default = 1</td>
+<td>Integer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>pf_timestamp</td>
+<td>Time of the customer visit, purchase or interaction.</td>
+<td>Integer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>pf_store</td>
+<td>Name of the store where interaction happened</td>
+<td>String</td>
+<td>No</td>
+</tr>
+<tr>
+<td>pf_seller_name</td>
+<td>Salesperson name</td>
+<td>String</td>
+<td>No</td>
+</tr>
+<tr>
+<td>pf_target</td>
+<td>Acquisition target</td>
+<td>String</td>
+<td>No</td>
+</tr>
+<tr>
+<td>pf_name</td>
+<td>Customer name</td>
+<td>String</td>
+<td>No</td>
+</tr>
+<tr>
+<td>pf_gender</td>
+<td>Customer gender</td>
+<td>String</td>
+<td>No</td>
+</tr>
+<tr>
+<td>pf_age</td>
+<td>Customer age</td>
+<td>Integer</td>
+<td>No</td>
 </tr>
 </tbody></table>
 
 <blockquote>
-<p>POST /api/v01/surveys/:id/invite</p>
+<p>POST /api/v01/invitations</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'/api/v01/surveys/:id/invite'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'/api/v01/invitations/'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
 <span class="nt">-d</span> <span class="s1">'invitation_id=firstname.lastname@example.com'</span>
 </code></pre></div>
@@ -519,24 +517,117 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"invitation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"survey_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"form_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"invitation_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+358441234567"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"delay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"retries"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pf_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pf_store"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pf_seller_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pf_target"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pf_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pf_gender"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pf_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"answered_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='list-invitations'>List invitations</h2>
 <p>Lists created invitations.</p>
-<h1 id='replies'>Replies</h1><h2 id='list'>List</h2>
-<p>Get a list of replies and their results. Individual answers</p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Type</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>form_id</td>
+<td>Field to identify form in a case when api-auth-token has access to more than one form. If not filled first active survey form will be used.</td>
+<td>Integer</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <blockquote>
-<p>GET /api/v01/surveys/:id/replies</p>
+<p>GET /api/v01/invitations</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'/api/v01/surveys/1/replies'</span> <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'api-auth-key: 4704c2a7-3646-42ce-9cf1-15e1935d49d3'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'starting_after='</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'ending_before='</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'/api/v01/invitations/'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"invitations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"form_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"invitation_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+358441234567"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"delay"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"retries"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pf_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pf_store"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pf_seller_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pf_target"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pf_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pf_gender"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pf_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"answered_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='replies'>Replies</h1><h2 id='list'>List</h2>
+<p>Get a list of replies and their answers. </p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Type</th>
+<th>Mandatory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>created_after</td>
+<td>Answers after date</td>
+<td>Date time ISO 8601</td>
+<td>No</td>
+</tr>
+<tr>
+<td>created_before</td>
+<td>Answers before date</td>
+<td>Date time ISO 8601</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Max number of rows to return, Default = 100</td>
+<td>Integer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Row number to start from. Default = 0</td>
+<td>Integer</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>GET /api/v01/replies</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'/api/v01/replies'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'created_after=2020-12-18T00:00:00+00:00'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'created_before=2020-12-19T00:00:00+00:00'</span> <span class="se">\</span>
 <span class="nt">-d</span> <span class="s1">'limit=100'</span>
 </code></pre></div>
 <blockquote>
@@ -546,19 +637,98 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
   </span><span class="nl">"replies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Survey name"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Survey 12/2020"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"invite_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+358441234567"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"user_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nl">"user_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+358441234567"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">],</span><span class="w">
       </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-19T00:00:00+00:00"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='answers'>Answers</h1>
-<p>Get individual reply answers.</p>
-<h1 id='reports'>Reports</h1>
-<p>Get survey reports.</p>
+</span></code></pre></div>
+<p>[comment]: &lt;&gt; (# Survey)</p>
+
+<p>[comment]: &lt;&gt; (Survey definition here so that developer understands it. Survey questions and settings are by Buenno staff.)</p>
+
+<p>[comment]: &lt;&gt; (## List surveys)</p>
+
+<p>[comment]: &lt;&gt; (Get a list of surveys.)</p>
+
+<p>[comment]: &lt;&gt; (### URL Parameters &#40;optional&#41;)</p>
+
+<p>[comment]: &lt;&gt; (Parameter | Type | Description)</p>
+
+<p>[comment]: &lt;&gt; (--------- | ---- | -----------)</p>
+
+<p>[comment]: &lt;&gt; (active &#40;optional&#41; | Boolean | Filter by ongoing surveys)</p>
+
+<p>[comment]: &lt;&gt; (starting_after &#40;optional&#41; | Timestamp | )</p>
+
+<p>[comment]: &lt;&gt; (ending_before &#40;optional&#41; | Timestamp |)</p>
+
+<p>[comment]: &lt;&gt; (limit &#40;optional&#41; | Integer | Limit results)</p>
+
+<p>[comment]: &lt;&gt; (offset &#40;optional&#41; | Integer | Offset results)</p>
+
+<p>[comment]: &lt;&gt; (&gt; GET /api/v01/surveys)</p>
+
+<p>[comment]: &lt;&gt; (```shell)</p>
+
+<p>[comment]: &lt;&gt; (curl --location --request GET &#39;https://buenno-research.io/api/v01/surveys&#39; )</p>
+
+<p>[comment]: &lt;&gt; (--header &#39;api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#39; )</p>
+
+<p>[comment]: &lt;&gt; (-d &#39;active=true&#39; )</p>
+
+<p>[comment]: &lt;&gt; (-d &#39;starting_after=1234567890&#39; )</p>
+
+<p>[comment]: &lt;&gt; (-d &#39;ending_before=1234567890&#39; )</p>
+
+<p>[comment]: &lt;&gt; (-d &#39;limit=100&#39; )</p>
+
+<p>[comment]: &lt;&gt; (-d &#39;offset=0&#39;)</p>
+
+<p>[comment]: &lt;&gt; (```)</p>
+
+<p>[comment]: &lt;&gt; (&gt; Response)</p>
+
+<p>[comment]: &lt;&gt; (```json)</p>
+
+<p>[comment]: &lt;&gt; ({)</p>
+
+<p>[comment]: &lt;&gt; (  &quot;surveys&quot;: [)</p>
+
+<p>[comment]: &lt;&gt; (    {)</p>
+
+<p>[comment]: &lt;&gt; (      &quot;id&quot;: 1,)</p>
+
+<p>[comment]: &lt;&gt; (      &quot;name&quot;: &quot;Survey name&quot;,)</p>
+
+<p>[comment]: &lt;&gt; (      &quot;active&quot;: true,)</p>
+
+<p>[comment]: &lt;&gt; (      &quot;updated_at&quot;: &quot;2020-12-19T00:00:00+00:00&quot;,)</p>
+
+<p>[comment]: &lt;&gt; (      &quot;created_at&quot;: &quot;2020-12-18T00:00:00+00:00&quot;)</p>
+
+<p>[comment]: &lt;&gt; (    })</p>
+
+<p>[comment]: &lt;&gt; (  ])</p>
+
+<p>[comment]: &lt;&gt; (})</p>
+
+<p>[comment]: &lt;&gt; (```)</p>
+
+<p>[comment]: &lt;&gt; (# Answers)</p>
+
+<p>[comment]: &lt;&gt; (Get individual reply answers.)</p>
+
+<p>[comment]: &lt;&gt; (# Reports)</p>
+
+<p>[comment]: &lt;&gt; (Get survey reports.)</p>
 
       </div>
       <div class="dark-box">
