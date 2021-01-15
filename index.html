@@ -355,6 +355,8 @@
 
 <p><a href='mailto:info@buenno.fi'>Contact us for an API Key</a></p>
 <h2 id='get-token-info'>Get token info</h2>
+<p>Test that your api-auth-token is valid. Token info includes information of accessible forms.</p>
+
 <blockquote>
 <p>GET /api/v01/token-info</p>
 </blockquote>
@@ -363,7 +365,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span>
 </code></pre></div>
 <blockquote>
-<p>Response</p>
+<p>Response:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"token-info"</span><span class="p">:</span><span class="w"> 
@@ -378,9 +380,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Test that your api-auth-token is valid. Token info includes information of accessible forms.</p>
-<h1 id='errors'>Errors</h1>
+</span></code></pre></div><h1 id='errors'>Errors</h1>
 <p>The Buenno API uses following HTTP status codes on errors.</p>
 
 <table><thead>
@@ -420,6 +420,8 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </span></code></pre></div><h1 id='invitations'>Invitations</h1>
 <p>Use following endpoints to invite users to answer question form. Message content to email or SMS is created automatically by Buenno.</p>
 <h2 id='create-invitation'>Create invitation</h2>
+<p>Invite customers to answer to a survey. Use prefilled parameters (pf_) to fill required questions for the customer. If prefilled field is missing, the corresponding question will be asked from the customer.</p>
+
 <blockquote>
 <p>POST /api/v01/invitations</p>
 </blockquote>
@@ -450,9 +452,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
     </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Invite customers to answer to a survey. Use prefilled parameters (pf_) to fill required questions for the customer. If prefilled field is missing, the corresponding question will be asked from the customer.</p>
-<h3 id='exeptions'>Exeptions</h3>
+</span></code></pre></div><h3 id='exeptions'>Exeptions</h3>
 <p>Returns <code>409</code> if invitation with given identifier exists.</p>
 
 <p>Returns <code>403</code> if no active form is present.</p>
@@ -535,6 +535,8 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </tr>
 </tbody></table>
 <h2 id='list-invitations'>List invitations</h2>
+<p>Lists created invitations.</p>
+
 <blockquote>
 <p>GET /api/v01/invitations</p>
 </blockquote>
@@ -566,9 +568,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Lists created invitations.</p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+</span></code></pre></div><h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -585,6 +585,8 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </tr>
 </tbody></table>
 <h1 id='replies'>Replies</h1><h2 id='list'>List</h2>
+<p>Get a list of replies and their answers. </p>
+
 <blockquote>
 <p>GET /api/v01/replies</p>
 </blockquote>
@@ -613,9 +615,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Get a list of replies and their answers.</p>
-<h3 id='url-parameters-3'>URL Parameters</h3>
+</span></code></pre></div><h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
