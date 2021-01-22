@@ -41,7 +41,7 @@ curl --location --request GET 'https://buenno-research.io/api/v01/token-info' \
 
 ```json
 {
-  "token-info": 
+  "api_token": 
   {
     "name": "Example CRM token",
     "forms": [
@@ -64,7 +64,7 @@ Code | Possible cause
 401 | api-auth-token not found or invalid
 403 | Action is not allowed to perform right now.
 404 | Given id not found or invalid
-405 | Method (GET/PUT/POST/PATCH/DELETE) is not allowed
+404 | Method (GET/PUT/POST/PATCH/DELETE) is not allowed
 409 | Created item with a given key already exists
 
 > Example of json error response:
@@ -81,14 +81,14 @@ Use following endpoints to invite users to answer question form. Message content
 
 ## Create invitation
 
-Invite customers to answer to a survey. Use prefilled parameters (pf_) to fill required questions for the customer. If prefilled field is missing, the corresponding question will be asked from the customer.
+Invite customers to answer to a survey. Use either email or phone to specify how user should receive the invitation. Use prefilled parameters (pf_) to fill required questions for the customer. If prefilled field is missing, the corresponding question will be asked from the customer.
 
 > POST /api/v01/invitations
 
 ```shell
 curl --location --request POST '/api/v01/invitations/' \
 --header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
--d 'invitation_id=firstname.lastname@example.com'
+-d 'phone=00358441234567'
 ```
 
 > Response
@@ -100,7 +100,7 @@ curl --location --request POST '/api/v01/invitations/' \
     "form_id": 1,
     "email": null,
     "phone": "00358441234567",
-    "delay": 0,
+    "delay_sec": 0,
     "retries": 1,
     "pf_timestamp": null,
     "pf_store": null,
@@ -133,7 +133,7 @@ Parameter | Description | Type | Mandatory
 phone | Phone number to send survey invitation. Phone or Email is mandatory. Phone number should include country code where + is replaced with 00. E.g +358441234567 becomes 00358441234567 | String | -
 email | Email to send survey invitation. Phone or Email is mandatory. | String | -
 form_id | Field to identify form in a case when api-auth-token has access to more than one form. If not filled first active survey form will be used. | Integer | No
-delay | Number of seconds to delay the invitation to the customer, default = 0 | Integer | No
+delay_sec | Number of seconds to delay the invitation to the customer, default = 0 | Integer | No
 retries | Number of retries, default = 1 | Integer | No
 pf_timestamp | Time of the customer visit, purchase or interaction. | Integer | No
 pf_store | Name of the store where interaction happened | String | No
@@ -162,8 +162,9 @@ curl --location --request GET '/api/v01/invitations/' \
     {
       "id": 1,
       "form_id": 1,
-      "invitation_id": "+358441234567",
-      "delay": 0,
+      "email": null,
+      "phone": "00358441234567",
+      "delay_sec": 0,
       "retries": 1,
       "pf_timestamp": null,
       "pf_store": null,
@@ -211,9 +212,9 @@ curl --location --request GET '/api/v01/replies' \
     {
       "id": 1,
       "name": "Example Survey 12/2020",
-      "invite_id": "+358441234567",
+      "invite_id": "00358441234567",
       "user_email": "",
-      "user_phone": "+358441234567",
+      "user_phone": "00358441234567",
       "answers": [
         ...
       ],
