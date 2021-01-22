@@ -98,14 +98,16 @@ curl --location --request POST '/api/v01/invitations/' \
   "invitation": {
     "id": 1,
     "form_id": 1,
-    "invitation_id": "+358441234567",
+    "email": null,
+    "phone": "00358441234567",
     "delay": 0,
     "retries": 1,
     "pf_timestamp": null,
     "pf_store": null,
     "pf_seller_name": null,
     "pf_target": null,
-    "pf_name": null,
+    "pf_first_name": null,
+    "pf_last_name": null,
     "pf_gender": null,
     "pf_age": null,
     "sent_at": "2020-12-18T00:00:00+00:00",
@@ -128,7 +130,8 @@ Returns `404` if form_id is invalid.
 
 Parameter | Description | Type | Mandatory
 --------- | ----------- | ---- | --------
-invitation_id | Phone number or email | String | Yes
+phone | Phone number to send survey invitation. Phone or Email is mandatory. Phone number should include country code where + is replaced with 00. E.g +358441234567 becomes 00358441234567 | String | -
+email | Email to send survey invitation. Phone or Email is mandatory. | String | -
 form_id | Field to identify form in a case when api-auth-token has access to more than one form. If not filled first active survey form will be used. | Integer | No
 delay | Number of seconds to delay the invitation to the customer, default = 0 | Integer | No
 retries | Number of retries, default = 1 | Integer | No
