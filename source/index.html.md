@@ -110,6 +110,7 @@ curl --location --request POST '/api/v01/invitations/' \
     "pf_last_name": null,
     "pf_gender": null,
     "pf_age": null,
+    "external_id": null,
     "sent_at": "2020-12-18T00:00:00+00:00",
     "answered_at": null,
     "updated_at": "2020-12-18T00:00:00+00:00",
@@ -142,6 +143,7 @@ pf_target | Acquisition target | String | No
 pf_name | Customer name | String | No
 pf_gender | Customer gender | String | No
 pf_age | Customer age | Integer | No
+external_id | External user id | String | No
 
 ## List invitations
 
@@ -173,6 +175,7 @@ curl --location --request GET '/api/v01/invitations/' \
       "pf_name": null,
       "pf_gender": null,
       "pf_age": null,
+      "external_id": null,
       "sent_at": "2020-12-18T00:00:00+00:00",
       "answered_at": null,
       "updated_at": "2020-12-18T00:00:00+00:00",
