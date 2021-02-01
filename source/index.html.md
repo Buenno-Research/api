@@ -97,21 +97,22 @@ curl --location --request POST '/api/v01/invitations/' \
 {
   "invitation": {
     "id": 1,
-    "form_id": 1,
     "email": null,
     "phone": "00358441234567",
+    "first_name": null,
+    "last_name": null,
+    "form_id": 1,
     "delay_sec": 0,
     "retries": 1,
     "pf_timestamp": null,
     "pf_store": null,
     "pf_seller_name": null,
     "pf_target": null,
-    "pf_first_name": null,
-    "pf_last_name": null,
     "pf_gender": null,
     "pf_age": null,
-    "external_id": null,
+    "pf_external_id": null,
     "sent_at": "2020-12-18T00:00:00+00:00",
+    "opened_at": "2020-12-19T00:00:00+00:00",
     "answered_at": null,
     "updated_at": "2020-12-18T00:00:00+00:00",
     "created_at": "2020-12-18T00:00:00+00:00"
@@ -133,6 +134,8 @@ Parameter | Description | Type | Mandatory
 --------- | ----------- | ---- | --------
 phone | Phone number to send survey invitation. Phone or Email is mandatory. Phone number should include country code where + is replaced with 00. E.g +358441234567 becomes 00358441234567 | String | -
 email | Email to send survey invitation. Phone or Email is mandatory. | String | -
+first_name | Customer first name | String | No
+last_name | Customer last name | String | No
 form_id | Field to identify form in a case when api-auth-token has access to more than one form. If not filled first active survey form will be used. | Integer | No
 delay_sec | Number of seconds to delay the invitation to the customer, default = 0 | Integer | No
 retries | Number of retries, default = 1 | Integer | No
@@ -140,10 +143,9 @@ pf_timestamp | Time of the customer visit, purchase or interaction. | Integer | 
 pf_store | Name of the store where interaction happened | String | No
 pf_seller_name | Salesperson name | String | No
 pf_target | Acquisition target | String | No
-pf_name | Customer name | String | No
 pf_gender | Customer gender | String | No
 pf_age | Customer age | Integer | No
-external_id | External user id | String | No
+pf_external_id | External user id | String | No
 
 ## List invitations
 
@@ -163,20 +165,22 @@ curl --location --request GET '/api/v01/invitations/' \
   "invitations": [
     {
       "id": 1,
-      "form_id": 1,
       "email": null,
       "phone": "00358441234567",
+      "first_name": null,
+      "last_name": null,
+      "form_id": 1,
       "delay_sec": 0,
       "retries": 1,
       "pf_timestamp": null,
       "pf_store": null,
       "pf_seller_name": null,
       "pf_target": null,
-      "pf_name": null,
       "pf_gender": null,
       "pf_age": null,
-      "external_id": null,
+      "pf_external_id": null,
       "sent_at": "2020-12-18T00:00:00+00:00",
+      "opened_at": "2020-12-19T00:00:00+00:00",
       "answered_at": null,
       "updated_at": "2020-12-18T00:00:00+00:00",
       "created_at": "2020-12-18T00:00:00+00:00"
