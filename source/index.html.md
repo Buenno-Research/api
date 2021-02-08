@@ -206,7 +206,7 @@ Get a list of replies and their answers.
 ```shell
 curl --location --request GET '/api/v01/replies' \
 --header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
--d 'created_after=2020-12-18T00:00:00+00:00' \
+-d 'created_after=2020-12-17T00:00:00+00:00' \
 -d 'created_before=2020-12-19T00:00:00+00:00' \
 -d 'limit=100'
 ```
@@ -219,14 +219,22 @@ curl --location --request GET '/api/v01/replies' \
     {
       "id": 1,
       "name": "Example Survey 12/2020",
-      "invite_id": "00358441234567",
-      "user_email": "",
-      "user_phone": "00358441234567",
+      "email": "",
+      "phone": "00358441234567",
       "answers": [
-        ...
+        {
+          "question": "Lorem ipsum",
+          "points": 50,
+          "answer": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
+        },
+        {
+          "question": "De finibus bonorum et malorum",
+          "points": 0,
+          "answer": "qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui do."
+        }
       ],
-      "updated_at": "2020-12-19T00:00:00+00:00",
-      "created_at": "2020-12-18T00:00:00+00:00"
+      "updated_at": "2020-12-19T00:00:00Z",
+      "created_at": "2020-12-18T00:00:00Z"
     }
   ]
 }
