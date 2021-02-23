@@ -102,8 +102,6 @@ curl --location --request POST '/api/v01/invitations/' \
     "first_name": null,
     "last_name": null,
     "form_id": 1,
-    "delay_sec": 0,
-    "retries": 1,
     "pf_timestamp": null,
     "pf_store": null,
     "pf_seller_name": null,
@@ -111,11 +109,12 @@ curl --location --request POST '/api/v01/invitations/' \
     "pf_gender": null,
     "pf_age": null,
     "pf_external_id": null,
+    "scheduled_at": "2020-12-18T00:00:00+00:00",
     "sent_at": "2020-12-18T00:00:00+00:00",
     "opened_at": "2020-12-19T00:00:00+00:00",
     "answered_at": null,
-    "updated_at": "2020-12-18T00:00:00+00:00",
-    "created_at": "2020-12-18T00:00:00+00:00"
+    "created_at": "2020-12-18T00:00:00+00:00",
+    "updated_at": "2020-12-18T00:00:00+00:00"
   }
 }
 ```
@@ -136,9 +135,6 @@ phone | Phone number to send survey invitation. Phone or Email is mandatory. Pho
 email | Email to send survey invitation. Phone or Email is mandatory. | String | -
 first_name | Customer first name | String | No
 last_name | Customer last name | String | No
-form_id | Field to identify form in a case when api-auth-token has access to more than one form. If not filled first active survey form will be used. | Integer | No
-delay_sec | Number of seconds to delay the invitation to the customer, default = 0 | Integer | No
-retries | Number of retries, default = 1 | Integer | No
 pf_timestamp | Time of the customer visit, purchase or interaction. | Integer | No
 pf_store | Name of the store where interaction happened | String | No
 pf_seller_name | Salesperson name | String | No
@@ -170,8 +166,6 @@ curl --location --request GET '/api/v01/invitations/' \
       "first_name": null,
       "last_name": null,
       "form_id": 1,
-      "delay_sec": 0,
-      "retries": 1,
       "pf_timestamp": null,
       "pf_store": null,
       "pf_seller_name": null,
@@ -179,11 +173,12 @@ curl --location --request GET '/api/v01/invitations/' \
       "pf_gender": null,
       "pf_age": null,
       "pf_external_id": null,
+      "scheduled_at": "2020-12-18T00:00:00+00:00",
       "sent_at": "2020-12-18T00:00:00+00:00",
       "opened_at": "2020-12-19T00:00:00+00:00",
       "answered_at": null,
-      "updated_at": "2020-12-18T00:00:00+00:00",
-      "created_at": "2020-12-18T00:00:00+00:00"
+      "created_at": "2020-12-18T00:00:00+00:00",
+      "updated_at": "2020-12-18T00:00:00+00:00"
     }
   ]
 }
