@@ -216,6 +216,15 @@ curl --location --request GET '/api/v01/replies' \
       "name": "Example Survey 12/2020",
       "email": "",
       "phone": "00358441234567",
+      "first_name": null,
+      "last_name": null,
+      "pf_timestamp": null,
+      "pf_store": null,
+      "pf_seller_name": null,
+      "pf_target": null,
+      "pf_gender": null,
+      "pf_age": null,
+      "pf_external_id": null,
       "answers": [
         {
           "question": "Lorem ipsum",
