@@ -33,7 +33,7 @@ Test that your api-auth-token is valid. Token info includes information of acces
 
 ```shell
 # Include your api-auth-token to each request
-curl --location --request GET 'https://buenno-research.io/api/v01/token-info' \
+curl --location --request GET 'https://webreport.buenno.fi/api/v01/token-info' \
 --header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
 ```
 
