@@ -135,7 +135,7 @@ phone | Phone number to send survey invitation. Phone or Email is mandatory. Pho
 email | Email to send survey invitation. Phone or Email is mandatory. | String | -
 first_name | Customer first name | String | No
 last_name | Customer last name | String | No
-pf_timestamp | Time of the customer visit, purchase or interaction. | Integer | No
+pf_timestamp | Time of the customer visit, purchase or interaction (in seconds). | Integer | No
 pf_store | Name of the store where interaction happened | String | No
 pf_seller_name | Salesperson name | String | No
 pf_target | Acquisition target | String | No
