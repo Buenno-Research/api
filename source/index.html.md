@@ -109,6 +109,7 @@ curl --location --request POST '/api/v01/invitations/' \
     "pf_gender": null,
     "pf_age": null,
     "pf_external_id": null,
+    "invitation_link": "https://buenno.fi/i/0b6a5ed887f3b89acd08",
     "scheduled_at": "2020-12-18T00:00:00+00:00",
     "sent_at": "2020-12-18T00:00:00+00:00",
     "opened_at": "2020-12-19T00:00:00+00:00",
