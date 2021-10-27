@@ -253,3 +253,4 @@ created_after | Answers after date | Date time ISO 8601  | No
 created_before | Answers before date | Date time ISO 8601 | No
 limit | Max number of rows to return, Default = 100 | Integer | No
 offset | Row number to start from. Default = 0 | Integer | No
+form_id | The form to get the replies for | Integer | No
