@@ -19,7 +19,7 @@ The Buenno API s organized around REST. Our API has predictable resource-oriente
 
 # Authentication
 
-The Buenno API uses API keys to authenticate requests. To send any request to our api, include `api-auth-token to the request header.
+The Buenno API uses API keys to authenticate requests. To send any request to our api, include `api-auth-token` to the request header.
 
 Your API keys carry many privileges, so be sure to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, client-side code, and so forth.
 
