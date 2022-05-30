@@ -349,7 +349,7 @@
         <h1 id='buenno-api-reference'>Buenno API Reference</h1>
 <p>The Buenno API s organized around REST. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.</p>
 <h1 id='authentication'>Authentication</h1>
-<p>The Buenno API uses API keys to authenticate requests. To send any request to our api, include `api-auth-token to the request header.</p>
+<p>The Buenno API uses API keys to authenticate requests. To send any request to our api, include <code>api-auth-token</code> to the request header.</p>
 
 <p>Your API keys carry many privileges, so be sure to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, client-side code, and so forth.</p>
 
@@ -669,6 +669,12 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <tr>
 <td>offset</td>
 <td>Row number to start from. Default = 0</td>
+<td>Integer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>form_id</td>
+<td>The form to get the replies for</td>
 <td>Integer</td>
 <td>No</td>
 </tr>
