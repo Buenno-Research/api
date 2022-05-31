@@ -425,7 +425,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <blockquote>
 <p>POST /api/v01/invitations</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'/api/v01/invitations/'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://webreport.buenno.fi/api/v01/invitations/'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
 <span class="nt">-d</span> <span class="s1">'phone=00358441234567'</span>
 </code></pre></div>
@@ -497,7 +497,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </tr>
 <tr>
 <td>pf_timestamp</td>
-<td>Time of the customer visit, purchase or interaction (in seconds).</td>
+<td>Time of the customer visit, purchase or interaction (seconds since January 1st, 1970).</td>
 <td>Integer</td>
 <td>No</td>
 </tr>
@@ -537,6 +537,12 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <td>String</td>
 <td>No</td>
 </tr>
+<tr>
+<td>preferred_language</td>
+<td>Language to use for this invitation, ISO 639‑1 code</td>
+<td>String</td>
+<td>No</td>
+</tr>
 </tbody></table>
 <h2 id='list-invitations'>List invitations</h2>
 <p>Lists created invitations.</p>
@@ -544,7 +550,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <blockquote>
 <p>GET /api/v01/invitations</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'/api/v01/invitations/'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://webreport.buenno.fi/api/v01/invitations/'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span>
 </code></pre></div>
 <blockquote>
@@ -597,7 +603,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <blockquote>
 <p>GET /api/v01/replies</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'/api/v01/replies'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://webreport.buenno.fi/api/v01/replies'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
 <span class="nt">-d</span> <span class="s1">'created_after=2020-12-17T00:00:00+00:00'</span> <span class="se">\</span>
 <span class="nt">-d</span> <span class="s1">'created_before=2020-12-19T00:00:00+00:00'</span> <span class="se">\</span>
