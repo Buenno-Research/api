@@ -86,7 +86,7 @@ Invite customers to answer to a survey. Use either email or phone to specify how
 > POST /api/v01/invitations
 
 ```shell
-curl --location --request POST '/api/v01/invitations/' \
+curl --location --request POST 'https://webreport.buenno.fi/api/v01/invitations/' \
 --header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
 -d 'phone=00358441234567'
 ```
@@ -136,13 +136,15 @@ phone | Phone number to send survey invitation. Phone or Email is mandatory. Pho
 email | Email to send survey invitation. Phone or Email is mandatory. | String | -
 first_name | Customer first name | String | No
 last_name | Customer last name | String | No
-pf_timestamp | Time of the customer visit, purchase or interaction (in seconds). | Integer | No
+pf_timestamp | Time of the customer visit, purchase or interaction (seconds since January 1st, 1970). | Integer | No
 pf_store | Name of the store where interaction happened | String | No
 pf_seller_name | Salesperson name | String | No
 pf_target | Acquisition target | String | No
 pf_gender | Customer gender | String | No
 pf_age | Customer age | Integer | No
 pf_external_id | External user id | String | No
+preferred_language | Language to use for this invitation, ISO 639‑1 code | String | No
+
 
 ## List invitations
 
@@ -151,7 +153,7 @@ Lists created invitations.
 > GET /api/v01/invitations
 
 ```shell
-curl --location --request GET '/api/v01/invitations/' \
+curl --location --request GET 'https://webreport.buenno.fi/api/v01/invitations/' \
 --header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
 ```
 
@@ -200,7 +202,7 @@ Get a list of replies and their answers.
 > GET /api/v01/replies
 
 ```shell
-curl --location --request GET '/api/v01/replies' \
+curl --location --request GET 'https://webreport.buenno.fi/api/v01/replies' \
 --header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
 -d 'created_after=2020-12-17T00:00:00+00:00' \
 -d 'created_before=2020-12-19T00:00:00+00:00' \
