@@ -591,6 +591,30 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </tr>
 </thead><tbody>
 <tr>
+<td>created_after</td>
+<td>Invitations created after date</td>
+<td>Date time ISO 8601</td>
+<td>No</td>
+</tr>
+<tr>
+<td>created_before</td>
+<td>Invitations created before date</td>
+<td>Date time ISO 8601</td>
+<td>No</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Max number of rows to return, Default = 100, Max = 250</td>
+<td>Integer</td>
+<td>No</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Row number to start from. Default = 0</td>
+<td>Integer</td>
+<td>No</td>
+</tr>
+<tr>
 <td>form_id</td>
 <td>Field to identify form in a case when api-auth-token has access to more than one form. If not filled first active survey form will be used.</td>
 <td>Integer</td>
@@ -668,7 +692,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </tr>
 <tr>
 <td>limit</td>
-<td>Max number of rows to return, Default = 100</td>
+<td>Max number of rows to return, Default = 100, Max = 250</td>
 <td>Integer</td>
 <td>No</td>
 </tr>
