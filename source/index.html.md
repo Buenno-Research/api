@@ -191,6 +191,10 @@ curl --location --request GET 'https://webreport.buenno.fi/api/v01/invitations/'
 
 Parameter | Description | Type | Mandatory
 --------- | ----------- | ---- | --------
+created_after | Invitations created after date | Date time ISO 8601  | No
+created_before | Invitations created before date | Date time ISO 8601 | No
+limit | Max number of rows to return, Default = 100, Max = 250 | Integer | No
+offset | Row number to start from. Default = 0 | Integer | No
 form_id | Field to identify form in a case when api-auth-token has access to more than one form. If not filled first active survey form will be used. | Integer | No
 
 # Replies
@@ -253,6 +257,6 @@ Parameter | Description | Type | Mandatory
 --------- | ----------- | ---- | --------
 created_after | Answers after date | Date time ISO 8601  | No
 created_before | Answers before date | Date time ISO 8601 | No
-limit | Max number of rows to return, Default = 100 | Integer | No
+limit | Max number of rows to return, Default = 100, Max = 250 | Integer | No
 offset | Row number to start from. Default = 0 | Integer | No
 form_id | The form to get the replies for | Integer | No
