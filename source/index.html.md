@@ -203,6 +203,23 @@ form_id | Field to identify form in a case when api-auth-token has access to mor
 
 Get a list of replies and their answers. 
 
+Each question includes a `question_id` and `question_type_id`. `question_id` is a unique identifier for that question while `question_type_id` indicates which kind of question it is. The possible question types are:
+
+question_type_id | Question type
+--------- | ----
+1 | Main criteria
+2 | Other question
+4 | Admin
+5 | Offered product
+6 | Shopping goal
+7 | Answerer
+8 | Age
+9 | Gender
+10 | Seller's name
+11 | Visit date
+12 | Visit time
+13 | NPS
+
 > GET /api/v01/replies
 
 ```shell
@@ -236,12 +253,16 @@ curl --location --request GET 'https://webreport.buenno.fi/api/v01/replies' \
         {
           "question": "Lorem ipsum",
           "points": 50,
-          "answer": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
+          "answer": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+          "question_id": 1234,
+          "question_type_id": 1
         },
         {
           "question": "De finibus bonorum et malorum",
           "points": 0,
-          "answer": "qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui do."
+          "answer": "qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui do.",
+          "question_id": 2345,
+          "question_type_id": 13
         }
       ],
       "updated_at": "2020-12-19T00:00:00Z",
