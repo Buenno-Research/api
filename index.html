@@ -624,6 +624,64 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <h1 id='replies'>Replies</h1><h2 id='list'>List</h2>
 <p>Get a list of replies and their answers. </p>
 
+<p>Each question includes a <code>question_id</code> and <code>question_type_id</code>. <code>question_id</code> is a unique identifier for that question while <code>question_type_id</code> indicates which kind of question it is. The possible question types are:</p>
+
+<table><thead>
+<tr>
+<th>question_type_id</th>
+<th>Question type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Main criteria</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Other question</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Admin</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Offered product</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Shopping goal</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Answerer</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Age</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Gender</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Seller&#39;s name</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Visit date</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Visit time</td>
+</tr>
+<tr>
+<td>13</td>
+<td>NPS</td>
+</tr>
+</tbody></table>
+
 <blockquote>
 <p>GET /api/v01/replies</p>
 </blockquote>
@@ -656,12 +714,16 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
         </span><span class="p">{</span><span class="w">
           </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem ipsum"</span><span class="p">,</span><span class="w">
           </span><span class="nl">"points"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."</span><span class="w">
+          </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"question_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"De finibus bonorum et malorum"</span><span class="p">,</span><span class="w">
           </span><span class="nl">"points"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui do."</span><span class="w">
+          </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui do."</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"question_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
       </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-19T00:00:00Z"</span><span class="p">,</span><span class="w">
