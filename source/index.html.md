@@ -203,23 +203,6 @@ form_id | Field to identify form in a case when api-auth-token has access to mor
 
 Get a list of replies and their answers. 
 
-Each question includes a `question_id` and `question_type_id`. `question_id` is a unique identifier for that question while `question_type_id` indicates which kind of question it is. The possible question types are:
-
-question_type_id | Question type
---------- | ----
-1 | Main criteria
-2 | Other question
-4 | Admin
-5 | Offered product
-6 | Shopping goal
-7 | Answerer
-8 | Age
-9 | Gender
-10 | Seller's name
-11 | Visit date
-12 | Visit time
-13 | NPS
-
 > GET /api/v01/replies
 
 ```shell
@@ -281,3 +264,20 @@ created_before | Answers before date | Date time ISO 8601 | No
 limit | Max number of rows to return, Default = 100, Max = 250 | Integer | No
 offset | Row number to start from. Default = 0 | Integer | No
 form_id | The form to get the replies for | Integer | No
+
+Each question includes a `question_id` and `question_type_id`. `question_id` is a unique identifier for that question while `question_type_id` indicates which kind of question it is. The possible question types are:
+
+question_type_id | Question type
+--------- | ----
+1 | Main criteria
+2 | Other question
+4 | Admin
+5 | Offered product
+6 | Shopping goal
+7 | Answerer
+8 | Age
+9 | Gender
+10 | Seller's name
+11 | Visit date
+12 | Visit time
+13 | NPS
