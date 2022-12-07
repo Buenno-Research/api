@@ -232,6 +232,7 @@ curl --location --request GET 'https://webreport.buenno.fi/api/v01/replies' \
       "pf_gender": null,
       "pf_age": null,
       "pf_external_id": null,
+      "preferred_language": null,
       "answers": [
         {
           "question": "Lorem ipsum",
@@ -269,7 +270,7 @@ Each question includes a `question_id` and `question_type_id`. `question_id` is 
 
 question_type_id | Question type
 --------- | ----
-1 | Main criteria
+1 | Main question
 2 | Other question
 4 | Admin
 5 | Offered product
