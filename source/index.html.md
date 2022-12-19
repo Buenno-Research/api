@@ -208,9 +208,9 @@ Get a list of replies and their answers.
 ```shell
 curl --location --request GET 'https://webreport.buenno.fi/api/v01/replies' \
 --header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
--d 'created_after=2020-12-17T00:00:00+00:00' \
--d 'created_before=2020-12-19T00:00:00+00:00' \
--d 'limit=100'
+-d 'from=2020-12-17T00:00:00+00:00' \
+-d 'to=2020-12-19T00:00:00+00:00' \
+-d 'limit=1000'
 ```
 
 > Response
@@ -252,7 +252,10 @@ curl --location --request GET 'https://webreport.buenno.fi/api/v01/replies' \
       "updated_at": "2020-12-19T00:00:00Z",
       "created_at": "2020-12-18T00:00:00Z"
     }
-  ]
+  ],
+  "total": "2225",
+  "limit": "500",
+  "offset": "0"
 }
 ```
 
@@ -260,11 +263,11 @@ curl --location --request GET 'https://webreport.buenno.fi/api/v01/replies' \
 
 Parameter | Description | Type | Mandatory
 --------- | ----------- | ---- | --------
-created_after | Answers after date | Date time ISO 8601  | No
-created_before | Answers before date | Date time ISO 8601 | No
-limit | Max number of rows to return, Default = 100, Max = 250 | Integer | No
-offset | Row number to start from. Default = 0 | Integer | No
-form_id | The form to get the replies for | Integer | No
+from | Answers from date | Date time ISO 8601  | Yes
+to | Answers to date | Date time ISO 8601 | Yes
+limit | Max number of answers to return, Default = 500, Max = 1000 | Integer | No
+offset | Answer number to start from. Default = 0 | Integer | No
+locale | Locale used in question names | string | No
 
 Each question includes a `question_id` and `question_type_id`. `question_id` is a unique identifier for that question while `question_type_id` indicates which kind of question it is. The possible question types are:
 
