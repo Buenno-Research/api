@@ -629,9 +629,9 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://webreport.buenno.fi/api/v01/replies'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'created_after=2020-12-17T00:00:00+00:00'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'created_before=2020-12-19T00:00:00+00:00'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'limit=100'</span>
+<span class="nt">-d</span> <span class="s1">'from=2020-12-17T00:00:00+00:00'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'to=2020-12-19T00:00:00+00:00'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'limit=1000'</span>
 </code></pre></div>
 <blockquote>
 <p>Response</p>
@@ -672,7 +672,10 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
       </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-19T00:00:00Z"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2225"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
@@ -684,33 +687,33 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </tr>
 </thead><tbody>
 <tr>
-<td>created_after</td>
-<td>Answers after date</td>
+<td>from</td>
+<td>Answers from date</td>
 <td>Date time ISO 8601</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>created_before</td>
-<td>Answers before date</td>
+<td>to</td>
+<td>Answers to date</td>
 <td>Date time ISO 8601</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>limit</td>
-<td>Max number of rows to return, Default = 100, Max = 250</td>
+<td>Max number of answers to return, Default = 500, Max = 1000</td>
 <td>Integer</td>
 <td>No</td>
 </tr>
 <tr>
 <td>offset</td>
-<td>Row number to start from. Default = 0</td>
+<td>Answer number to start from. Default = 0</td>
 <td>Integer</td>
 <td>No</td>
 </tr>
 <tr>
-<td>form_id</td>
-<td>The form to get the replies for</td>
-<td>Integer</td>
+<td>locale</td>
+<td>Locale used in question names</td>
+<td>string</td>
 <td>No</td>
 </tr>
 </tbody></table>
