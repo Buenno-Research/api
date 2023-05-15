@@ -105,6 +105,7 @@ curl --location --request POST 'https://webreport.buenno.fi/api/v01/invitations/
     "pf_timestamp": null,
     "pf_store": null,
     "pf_seller_name": null,
+    "pf_product_category": null,
     "pf_target": null,
     "pf_gender": null,
     "pf_age": null,
@@ -139,6 +140,7 @@ last_name | Customer last name | String | No
 pf_timestamp | Time of the customer visit, purchase or interaction (seconds since January 1st, 1970). | Integer | No
 pf_store | Name of the store where interaction happened | String | No
 pf_seller_name | Salesperson name | String | No
+pf_product_category | Product category | String | No
 pf_target | Acquisition target | String | No
 pf_gender | Customer gender | String | No
 pf_age | Customer age | Integer | No
@@ -172,6 +174,7 @@ curl --location --request GET 'https://webreport.buenno.fi/api/v01/invitations/'
       "pf_timestamp": null,
       "pf_store": null,
       "pf_seller_name": null,
+      "pf_product_category": null,
       "pf_target": null,
       "pf_gender": null,
       "pf_age": null,
@@ -228,6 +231,7 @@ curl --location --request GET 'https://webreport.buenno.fi/api/v01/replies' \
       "pf_timestamp": null,
       "pf_store": null,
       "pf_seller_name": null,
+      "pf_product_category": null,
       "pf_target": null,
       "pf_gender": null,
       "pf_age": null,
@@ -285,3 +289,4 @@ question_type_id | Question type
 11 | Visit date
 12 | Visit time
 13 | NPS
+48 | Product category
