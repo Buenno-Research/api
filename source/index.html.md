@@ -273,6 +273,8 @@ limit | Max number of answers to return, Default = 500, Max = 1000 | Integer | N
 offset | Answer number to start from. Default = 0 | Integer | No
 locale | Locale used in question names | string | No
 
+Server is in UTC time. If you want to use local time for api calls use the +00:00 part to provide the offset to UTC.
+
 Each question includes a `question_id` and `question_type_id`. `question_id` is a unique identifier for that question while `question_type_id` indicates which kind of question it is. The possible question types are:
 
 question_type_id | Question type
