@@ -140,6 +140,7 @@ last_name | Customer last name | String | No
 pf_timestamp | Time of the customer visit, purchase or interaction (seconds since January 1st, 1970). | Integer | No
 pf_store | Name of the store where interaction happened | String | No
 pf_seller_name | Salesperson name | String | No
+pf_seller_id | Salesperson ID | String | No
 pf_product_category | Product category | String | No
 pf_target | Acquisition target | String | No
 pf_gender | Customer gender | String | No
@@ -231,18 +232,29 @@ curl --location --request GET 'https://webreport.buenno.fi/api/v01/replies' \
       "pf_timestamp": null,
       "pf_store": null,
       "pf_seller_name": null,
+      "pf_seller_id": null,
       "pf_product_category": null,
       "pf_target": null,
       "pf_gender": null,
       "pf_age": null,
       "pf_external_id": null,
       "preferred_language": null,
+      "question_count": 2,
+      "score_sum": 125,
+      "avg_score": 62.5,
       "answers": [
         {
           "question": "Lorem ipsum",
           "points": 50,
           "answer": "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
           "question_id": 1234,
+          "question_type_id": 1
+        },
+        {
+          "question": "Lorem ipsum 2",
+          "points": 75,
+          "answer": null,
+          "question_id": 1237,
           "question_type_id": 1
         },
         {
@@ -275,6 +287,15 @@ locale | Locale used in question names | string | No
 
 Server is in UTC time. If you want to use local time for api calls use the +00:00 part to provide the offset to UTC.
 
+Each reply contains `question_count`, `score_sum`, and `avg_score`, these 3 belong together:
+
+Name | Meaning
+--------- | ----
+question_count | The amount of main questions that have points.
+score_sum | The sum of all those main questions' points.
+avg_score | The average score for this reply; score_sum / question_count.
+
+
 Each question includes a `question_id` and `question_type_id`. `question_id` is a unique identifier for that question while `question_type_id` indicates which kind of question it is. The possible question types are:
 
 question_type_id | Question type
@@ -292,3 +313,4 @@ question_type_id | Question type
 12 | Visit time
 13 | NPS
 48 | Product category
+49 | Seller's ID
