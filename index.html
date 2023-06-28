@@ -515,6 +515,12 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <td>No</td>
 </tr>
 <tr>
+<td>pf_seller_id</td>
+<td>Salesperson ID</td>
+<td>String</td>
+<td>No</td>
+</tr>
+<tr>
 <td>pf_product_category</td>
 <td>Product category</td>
 <td>String</td>
@@ -656,18 +662,29 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
       </span><span class="nl">"pf_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"pf_store"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"pf_seller_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pf_seller_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"pf_product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"pf_target"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"pf_gender"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"pf_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"pf_external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"question_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"score_sum"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"avg_score"</span><span class="p">:</span><span class="w"> </span><span class="mf">62.5</span><span class="p">,</span><span class="w">
       </span><span class="nl">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem ipsum"</span><span class="p">,</span><span class="w">
           </span><span class="nl">"points"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
           </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."</span><span class="p">,</span><span class="w">
           </span><span class="nl">"question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"question_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem ipsum 2"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"points"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"answer"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"question_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1237</span><span class="p">,</span><span class="w">
           </span><span class="nl">"question_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -729,6 +746,28 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 
 <p>Server is in UTC time. If you want to use local time for api calls use the +00:00 part to provide the offset to UTC.</p>
 
+<p>Each reply contains <code>question_count</code>, <code>score_sum</code>, and <code>avg_score</code>, these 3 belong together:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>question_count</td>
+<td>The amount of main questions that have points.</td>
+</tr>
+<tr>
+<td>score_sum</td>
+<td>The sum of all those main questions&#39; points.</td>
+</tr>
+<tr>
+<td>avg_score</td>
+<td>The average score for this reply; score_sum / question_count.</td>
+</tr>
+</tbody></table>
+
 <p>Each question includes a <code>question_id</code> and <code>question_type_id</code>. <code>question_id</code> is a unique identifier for that question while <code>question_type_id</code> indicates which kind of question it is. The possible question types are:</p>
 
 <table><thead>
@@ -788,6 +827,10 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <tr>
 <td>48</td>
 <td>Product category</td>
+</tr>
+<tr>
+<td>49</td>
+<td>Seller&#39;s ID</td>
 </tr>
 </tbody></table>
 
