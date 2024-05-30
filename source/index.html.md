@@ -145,7 +145,7 @@ pf_product_category | Product category | String | No
 pf_target | Acquisition target | String | No
 pf_gender | Customer gender | String | No
 pf_age | Customer age | Integer | No
-pf_external_id | External user id | String | No
+pf_external_id | External customer id | String | No
 preferred_language | Language to use for this invitation, ISO 639‑1 code | String | No
 
 
