@@ -314,3 +314,4 @@ question_type_id | Question type
 13 | NPS
 48 | Product category
 49 | Seller's ID
+52 | External rating (e.g. imported Google Review)
