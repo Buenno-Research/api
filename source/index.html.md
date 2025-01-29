@@ -111,6 +111,46 @@ curl --location --request POST 'https://webreport.buenno.fi/api/v01/invitations/
     "pf_age": null,
     "pf_external_id": null,
     "invitation_link": "https://buenno.fi/i/0b6a5ed887f3b89acd08",
+    "delivery_method": null,
+    "scheduled_at": "2020-12-18T00:00:00+00:00",
+    "sent_at": "2020-12-18T00:00:00+00:00",
+    "opened_at": "2020-12-19T00:00:00+00:00",
+    "answered_at": null,
+    "created_at": "2020-12-18T00:00:00+00:00",
+    "updated_at": "2020-12-18T00:00:00+00:00"
+  }
+}
+```
+
+> POST /api/v01/invitations
+
+```shell
+curl --location --request POST 'https://webreport.buenno.fi/api/v01/invitations/' \
+--header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
+-d 'deliver_externally=true'
+```
+
+> Response
+
+```json
+{
+  "invitation": {
+    "id": 1,
+    "email": null,
+    "phone": "00358441234567",
+    "first_name": null,
+    "last_name": null,
+    "form_id": 1,
+    "pf_timestamp": null,
+    "pf_store": null,
+    "pf_seller_name": null,
+    "pf_product_category": null,
+    "pf_target": null,
+    "pf_gender": null,
+    "pf_age": null,
+    "pf_external_id": null,
+    "invitation_link": "https://buenno.fi/i/0b6a5ed887f3b89acd08",
+    "delivery_method": "delivered_externally",
     "scheduled_at": "2020-12-18T00:00:00+00:00",
     "sent_at": "2020-12-18T00:00:00+00:00",
     "opened_at": "2020-12-19T00:00:00+00:00",
@@ -131,22 +171,23 @@ Returns `404` if form_id is invalid.
 
 ### URL Parameters
 
-Parameter | Description | Type | Mandatory
---------- | ----------- | ---- | --------
+Parameter | Description                                                                                                                                                                         | Type | Mandatory
+--------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ---- | --------
 phone | Phone number to send survey invitation. Phone or Email is mandatory. Phone number should include country code where + is replaced with 00. E.g +358441234567 becomes 00358441234567 | String | -
-email | Email to send survey invitation. Phone or Email is mandatory. | String | -
-first_name | Customer first name | String | No
-last_name | Customer last name | String | No
-pf_timestamp | Time of the customer visit, purchase or interaction (seconds since January 1st, 1970). | Integer | No
-pf_store | Name of the store where interaction happened | String | No
-pf_seller_name | Salesperson name | String | No
-pf_seller_id | Salesperson ID | String | No
-pf_product_category | Product category | String | No
-pf_target | Acquisition target | String | No
-pf_gender | Customer gender | String | No
-pf_age | Customer age | Integer | No
-pf_external_id | External customer id | String | No
-preferred_language | Language to use for this invitation, ISO 639‑1 code | String | No
+email | Email to send survey invitation. Phone or Email is mandatory.                                                                                                                       | String | -
+deliver_externally | If true, invitation is not sent by Buenno. If true, invitation can be created without email or phone                                                                                | Boolean | No
+first_name | Customer first name                                                                                                                                                                 | String | No
+last_name | Customer last name                                                                                                                                                                  | String | No
+pf_timestamp | Time of the customer visit, purchase or interaction (seconds since January 1st, 1970).                                                                                              | Integer | No
+pf_store | Name of the store where interaction happened                                                                                                                                        | String | No
+pf_seller_name | Salesperson name                                                                                                                                                                    | String | No
+pf_seller_id | Salesperson ID                                                                                                                                                                      | String | No
+pf_product_category | Product category                                                                                                                                                                    | String | No
+pf_target | Acquisition target                                                                                                                                                                  | String | No
+pf_gender | Customer gender                                                                                                                                                                     | String | No
+pf_age | Customer age                                                                                                                                                                        | Integer | No
+pf_external_id | External customer id                                                                                                                                                                | String | No
+preferred_language | Language to use for this invitation, ISO 639‑1 code                                                                                                                                 | String | No
 
 
 ## List invitations
