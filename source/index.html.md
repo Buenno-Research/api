@@ -171,24 +171,23 @@ Returns `404` if form_id is invalid.
 
 ### URL Parameters
 
-Parameter | Description                                                                                                                                                                         | Type | Mandatory
---------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ---- | --------
-phone | Phone number to send survey invitation. Phone or Email is mandatory. Phone number should include country code where + is replaced with 00. E.g +358441234567 becomes 00358441234567 | String | -
-email | Email to send survey invitation. Phone or Email is mandatory.                                                                                                                       | String | -
-deliver_externally | If true, invitation is not sent by Buenno. If true, invitation can be created without email or phone                                                                                | Boolean | No
-first_name | Customer first name                                                                                                                                                                 | String | No
-last_name | Customer last name                                                                                                                                                                  | String | No
-pf_timestamp | Time of the customer visit, purchase or interaction (seconds since January 1st, 1970).                                                                                              | Integer | No
-pf_store | Name of the store where interaction happened                                                                                                                                        | String | No
-pf_seller_name | Salesperson name                                                                                                                                                                    | String | No
-pf_seller_id | Salesperson ID                                                                                                                                                                      | String | No
-pf_product_category | Product category                                                                                                                                                                    | String | No
-pf_target | Acquisition target                                                                                                                                                                  | String | No
-pf_gender | Customer gender                                                                                                                                                                     | String | No
-pf_age | Customer age                                                                                                                                                                        | Integer | No
-pf_external_id | External customer id                                                                                                                                                                | String | No
-preferred_language | Language to use for this invitation, ISO 639‑1 code                                                                                                                                 | String | No
-
+| Parameter           | Description                                                                                                                                            | Type    | Mandatory   |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-------------|
+| phone               | Phone number to send survey invitation. Phone number should include country code where + is replaced with 00. E.g +358441234567 becomes 00358441234567 | String  | Conditional |
+| email               | Email to send survey invitation                                                                                                                        | String  | Conditional |
+| deliver_externally  | If true, invitation is not sent by Buenno. An invitation can be created without email or phone                                                         | Boolean | Conditional |
+| first_name          | Customer first name                                                                                                                                    | String  | No          |
+| last_name           | Customer last name                                                                                                                                     | String  | No          |
+| pf_timestamp        | Time of the customer visit, purchase or interaction (seconds since January 1st, 1970).                                                                 | Integer | No          |
+| pf_store            | Name of the store where interaction happened                                                                                                           | String  | No          |
+| pf_seller_name      | Salesperson name                                                                                                                                       | String  | No          |
+| pf_seller_id        | Salesperson ID                                                                                                                                         | String  | No          |
+| pf_product_category | Product category                                                                                                                                       | String  | No          |
+| pf_target           | Acquisition target                                                                                                                                     | String  | No          |
+| pf_gender           | Customer gender                                                                                                                                        | String  | No          |
+| pf_age              | Customer age                                                                                                                                           | Integer | No          |
+| pf_external_id      | External customer id                                                                                                                                   | String  | No          |
+| preferred_language  | Language to use for this invitation, ISO 639‑1 code                                                                                                    | String  | No          |
 
 ## List invitations
 
