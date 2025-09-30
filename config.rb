@@ -61,3 +61,11 @@ set :port, 4567
 helpers do
   require './lib/toc_data.rb'
 end
+
+# Versioned documentation static pages
+versions = ['v01', 'v02']
+versions.each do |ver|
+  proxy "/#{ver}/index.html", "/index.html",
+    :locals => { :forced_version => ver }
+end
+

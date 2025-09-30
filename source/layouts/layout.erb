@@ -14,10 +14,13 @@ License for the specific language governing permissions and limitations
 under the License.
 %>
 <% language_tabs = current_page.data.language_tabs || [] %>
+<% # Use forced_version (from Middleman proxy) if present, else fallback to frontmatter %>
+<% version = (defined?(forced_version) && forced_version) || current_page.data.current_version %>
+<% available_versions = current_page.data.versions || [] %>
 <% page_content = yield %>
 <%
-  if current_page.data.includes
-    current_page.data.includes.each do |include|
+  if current_page.data.includes && current_page.data.includes[version]
+    current_page.data.includes[version].each do |include|
       page_content += partial("includes/#{include}")
     end
   end
@@ -62,6 +65,17 @@ under the License.
       $(function() { setupCodeCopy(); });
     </script>
     <% end %>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var versionSelect = document.getElementById('version-select');
+        if (versionSelect) {
+          versionSelect.addEventListener('change', function() {
+            var selectedVersion = this.value;
+            window.location.pathname = '/' + selectedVersion + '/';
+          });
+        }
+      });
+    </script>
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
@@ -73,6 +87,14 @@ under the License.
     </a>
     <div class="toc-wrapper">
       <%= image_tag "logo.png", class: 'logo' %>
+      <div class="version-selector">
+        <label for="version-select">Version:</label>
+        <select id="version-select">
+          <% current_page.data.versions.each do |v| %>
+            <option value="<%= v %>" <%= v == version ? 'selected' : '' %>><%= v.upcase %></option>
+          <% end %>
+        </select>
+      </div>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -86,6 +108,7 @@ under the License.
       <% end %>
       <% if current_page.data.search %>
         <div class="search">
+          <label for="input-search" class="visually-hidden">Search</label>
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
