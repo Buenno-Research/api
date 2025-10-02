@@ -37,7 +37,7 @@ curl --location --request POST 'https://webreport.buenno.fi/api/v02/invitations/
       "product_category": null,
       "product": null,
       "external_id": null,
-      "preferred_language ": "en"
+      "preferred_language": "en"
     },
     "scheduled_at": "2020-12-18T00:00:00+00:00",
     "sent_at": "2020-12-18T00:00:00+00:00",
