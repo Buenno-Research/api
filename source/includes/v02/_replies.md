@@ -33,7 +33,7 @@ curl --location --request GET 'https://webreport.buenno.fi/api/v02/replies' \
         "product_category": null,
         "product": null,
         "external_id": null,
-        "preferred_language ": "en"
+        "preferred_language": "en"
       },
       "question_count": 2,
       "score_sum": 125,
