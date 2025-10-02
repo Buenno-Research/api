@@ -635,3 +635,31 @@ html, body {
 .copy-clipboard:hover {
   opacity: 0.8;
 }
+
+.version-selector {
+  margin: 1em 0;
+
+  label {
+    font-weight: bold;
+    margin-right: 0.5em;
+  }
+}
+
+#version-select {
+  padding: 0.4em 1.5em 0.4em 0.8em;
+  border-radius: 0.4em;
+  border: 1px solid #0074D9;
+  background: #f8f8fa url('data:image/svg+xml;utf8,<svg fill="gray" height="16" viewBox="0 0 20 20" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7.293 7.293a1 1 0 011.414 0L10 8.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z"/></svg>') no-repeat right 0.8em center/1em;
+  appearance: none;
+  -webkit-appearance: none;
+  font-size: 1em;
+  color: #222;
+  cursor: pointer;
+  min-width: 6em;
+  transition: border 0.2s;
+}
+
+#version-select:focus {
+  border-color: #005fa3;
+  outline: none;
+}
