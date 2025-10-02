@@ -282,9 +282,9 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-a0d27eb5.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print-966d6edc.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all-024da600.js"></script>
+    <link href="../stylesheets/screen-a0d27eb5.css" rel="stylesheet" media="screen" />
+    <link href="../stylesheets/print-966d6edc.css" rel="stylesheet" media="print" />
+      <script src="../javascripts/all-024da600.js"></script>
 
     <script>
       $(function() { setupCodeCopy(); });
@@ -302,20 +302,20 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="v02 v02_index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar-cad8cdcb.png" alt="" />
+        <img src="../images/navbar-cad8cdcb.png" alt="" />
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-61f1a509.png" class="logo" alt="" />
+      <img src="../images/logo-61f1a509.png" class="logo" alt="" />
       <div class="version-selector">
         <label for="version-select">Version:</label>
         <select id="version-select">
-            <option value="v02" >V02</option>
-            <option value="v01" selected>V01</option>
+            <option value="v02" selected>V02</option>
+            <option value="v01" >V01</option>
         </select>
       </div>
         <div class="lang-selector">
@@ -380,10 +380,10 @@
 <p>Test that your api-auth-token is valid. Token info includes information of accessible forms.</p>
 
 <blockquote>
-<p>GET /api/v01/token-info</p>
+<p>GET /api/v02/token-info</p>
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># Include your api-auth-token to each request</span>
-curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://webreport.buenno.fi/api/v01/token-info'</span> <span class="se">\</span>
+curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://webreport.buenno.fi/api/v02/token-info'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span>
 </code></pre></div>
 <blockquote>
@@ -408,11 +408,15 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <p>Invite customers to answer to a survey. Use either email or phone to specify how user should receive the invitation. Use prefilled parameters (pf_) to fill required questions for the customer. If prefilled field is missing, the corresponding question will be asked from the customer.</p>
 
 <blockquote>
-<p>POST /api/v01/invitations</p>
+<p>POST /api/v02/invitations</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://webreport.buenno.fi/api/v01/invitations/'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://webreport.buenno.fi/api/v02/invitations/'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'phone=00358441234567'</span>
+<span class="nt">-d</span> <span class="s1">'phone=00358441234567'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'metadata[first_name]=John'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'metadata[last_name]=Doe'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'metadata[product][]=ProductA'</span> <span class="se">\</span>
+<span class="nt">-d</span> <span class="s1">'metadata[product][]=ProductB'</span>
 </code></pre></div>
 <blockquote>
 <p>Response</p>
@@ -422,19 +426,19 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00358441234567"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"form_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_store"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_seller_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_target"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_gender"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"invitation_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://buenno.fi/i/0b6a5ed887f3b89acd08"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"delivery_method"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"invitation_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://buenno.fi/i/0b6a5ed887f3b89acd08"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"visit_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"employee_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"product"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-19T00:00:00+00:00"</span><span class="p">,</span><span class="w">
@@ -445,9 +449,9 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <blockquote>
-<p>POST /api/v01/invitations</p>
+<p>POST /api/v02/invitations</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://webreport.buenno.fi/api/v01/invitations/'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://webreport.buenno.fi/api/v02/invitations/'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
 <span class="nt">-d</span> <span class="s1">'deliver_externally=true'</span>
 </code></pre></div>
@@ -459,19 +463,19 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00358441234567"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"form_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_store"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_seller_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_target"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_gender"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pf_external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"invitation_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://buenno.fi/i/0b6a5ed887f3b89acd08"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"delivery_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivered_externally"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"invitation_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://buenno.fi/i/0b6a5ed887f3b89acd08"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"visit_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"employee_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"product"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"preferred_language "</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-19T00:00:00+00:00"</span><span class="p">,</span><span class="w">
@@ -514,73 +518,61 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <td>Conditional</td>
 </tr>
 <tr>
-<td>first_name</td>
+<td>metadata</td>
+<td>Additional customer information (use the fields below when applicable, or add your own key/value pairs as needed)</td>
+<td>Object</td>
+<td>No</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;•&nbsp;first_name</td>
 <td>Customer first name</td>
 <td>String</td>
 <td>No</td>
 </tr>
 <tr>
-<td>last_name</td>
+<td>&nbsp;&nbsp;•&nbsp;last_name</td>
 <td>Customer last name</td>
 <td>String</td>
 <td>No</td>
 </tr>
 <tr>
-<td>pf_timestamp</td>
-<td>Time of the customer visit, purchase or interaction (seconds since January 1st, 1970).</td>
+<td>&nbsp;&nbsp;•&nbsp;visit_timestamp</td>
+<td>Time of the customer visit, purchase or interaction (ISO8601: &quot;2025-10-02T06:25:16Z&quot; utc, &quot;2025-10-02T06:25:16+03:00&quot; with timezone)</td>
 <td>Integer</td>
 <td>No</td>
 </tr>
 <tr>
-<td>pf_store</td>
-<td>Name of the store where interaction happened</td>
+<td>&nbsp;&nbsp;•&nbsp;location</td>
+<td>Name of the location where interaction happened</td>
 <td>String</td>
 <td>No</td>
 </tr>
 <tr>
-<td>pf_seller_name</td>
-<td>Salesperson name</td>
-<td>String</td>
+<td>&nbsp;&nbsp;•&nbsp;employee_name</td>
+<td>Employee name or names</td>
+<td>String or Array</td>
 <td>No</td>
 </tr>
 <tr>
-<td>pf_seller_id</td>
-<td>Salesperson ID</td>
-<td>String</td>
+<td>&nbsp;&nbsp;•&nbsp;product_category</td>
+<td>Product category or categories</td>
+<td>String or Array</td>
 <td>No</td>
 </tr>
 <tr>
-<td>pf_product_category</td>
-<td>Product category</td>
-<td>String</td>
+<td>&nbsp;&nbsp;•&nbsp;product</td>
+<td>Product or products</td>
+<td>String or Array</td>
 <td>No</td>
 </tr>
 <tr>
-<td>pf_target</td>
-<td>Acquisition target</td>
-<td>String</td>
-<td>No</td>
-</tr>
-<tr>
-<td>pf_gender</td>
-<td>Customer gender</td>
-<td>String</td>
-<td>No</td>
-</tr>
-<tr>
-<td>pf_age</td>
-<td>Customer age</td>
-<td>Integer</td>
-<td>No</td>
-</tr>
-<tr>
-<td>pf_external_id</td>
+<td>&nbsp;&nbsp;•&nbsp;external_id</td>
 <td>External customer id</td>
 <td>String</td>
 <td>No</td>
 </tr>
 <tr>
-<td>preferred_language</td>
+<td>&nbsp;&nbsp;•&nbsp;preferred_language</td>
 <td>Language to use for this invitation, ISO 639‑1 code</td>
 <td>String</td>
 <td>No</td>
@@ -590,9 +582,9 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <p>Lists created invitations.</p>
 
 <blockquote>
-<p>GET /api/v01/invitations</p>
+<p>GET /api/v02/invitations</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://webreport.buenno.fi/api/v01/invitations/'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://webreport.buenno.fi/api/v02/invitations/'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span>
 </code></pre></div>
 <blockquote>
@@ -604,17 +596,18 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00358441234567"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"form_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_store"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_seller_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_target"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_gender"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"question_form_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"visit_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"employee_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"product"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"preferred_language "</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
       </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-19T00:00:00+00:00"</span><span class="p">,</span><span class="w">
@@ -634,13 +627,13 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </tr>
 </thead><tbody>
 <tr>
-<td>created_after</td>
+<td>from</td>
 <td>Invitations created after date</td>
 <td>Date time ISO 8601</td>
 <td>No</td>
 </tr>
 <tr>
-<td>created_before</td>
+<td>to</td>
 <td>Invitations created before date</td>
 <td>Date time ISO 8601</td>
 <td>No</td>
@@ -658,8 +651,8 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <td>No</td>
 </tr>
 <tr>
-<td>form_id</td>
-<td>Field to identify form in a case when api-auth-token has access to more than one form. If not filled first active survey form will be used.</td>
+<td>question_form_id</td>
+<td>Field to identify question form in a case when api-auth-token has access to more than one form. If not filled first active survey will be used.</td>
 <td>Integer</td>
 <td>No</td>
 </tr>
@@ -668,9 +661,9 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <p>Get a list of replies and their answers.</p>
 
 <blockquote>
-<p>GET /api/v01/replies</p>
+<p>GET /api/v02/replies</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://webreport.buenno.fi/api/v01/replies'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://webreport.buenno.fi/api/v02/replies'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
 <span class="nt">-d</span> <span class="s1">'from=2020-12-17T00:00:00+00:00'</span> <span class="se">\</span>
 <span class="nt">-d</span> <span class="s1">'to=2020-12-19T00:00:00+00:00'</span> <span class="se">\</span>
@@ -686,18 +679,17 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
       </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Survey 12/2020"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00358441234567"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_store"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_seller_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_seller_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_target"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_gender"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_age"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"pf_external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"visit_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"employee_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"product"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
       </span><span class="nl">"question_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nl">"score_sum"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
       </span><span class="nl">"avg_score"</span><span class="p">:</span><span class="w"> </span><span class="mf">62.5</span><span class="p">,</span><span class="w">
