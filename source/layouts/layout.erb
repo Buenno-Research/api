@@ -71,7 +71,8 @@ under the License.
         if (versionSelect) {
           versionSelect.addEventListener('change', function() {
             var selectedVersion = this.value;
-            window.location.pathname = '/' + selectedVersion + '/';
+            var newPath = window.location.pathname.replace(/v\d{2}/, selectedVersion);
+            window.location.pathname = newPath;
           });
         }
       });
