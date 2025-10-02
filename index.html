@@ -1,14 +1,14 @@
 
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>API Reference</title>
 
-    <style media="screen">
-      .highlight table td { padding: 5px; }
+  <style media="screen">
+    .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight .gh {
   color: #999999;
@@ -195,13 +195,13 @@
 .highlight .o {
   color: #f92672;
 }
-    </style>
-    <style media="print">
-      * {
-        -webkit-transition:none!important;
-        transition:none!important;
-      }
-      .highlight table td { padding: 5px; }
+  </style>
+  <style media="print">
+    * {
+      -webkit-transition:none!important;
+      transition:none!important;
+    }
+    .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight, .highlight .w {
   color: #586e75;
@@ -281,95 +281,106 @@
 .highlight .ss {
   color: #859900;
 }
-    </style>
-    <link href="stylesheets/screen-a0d27eb5.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print-966d6edc.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all-024da600.js"></script>
+  </style>
+  <link href="stylesheets/screen-a0d27eb5.css" rel="stylesheet" media="screen" />
+  <link href="stylesheets/print-966d6edc.css" rel="stylesheet" media="print" />
+    <script src="javascripts/all-024da600.js"></script>
 
     <script>
       $(function() { setupCodeCopy(); });
     </script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var versionSelect = document.getElementById('version-select');
-        if (versionSelect) {
-          versionSelect.addEventListener('change', function() {
-            var selectedVersion = this.value;
-            var newPath = window.location.pathname.replace(/v\d{2}/, selectedVersion);
-            window.location.pathname = newPath;
-          });
-        }
-      });
-    </script>
-  </head>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var versionSelect = document.getElementById('version-select');
+      if (versionSelect) {
+        versionSelect.addEventListener('change', function() {
+          var selectedVersion = this.value;
+          var currentPath = window.location.pathname;
+          var newPath;
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
-    <a href="#" id="nav-button">
+          if (/v\d{2}/.test(currentPath)) {
+            // Version is in the path, replace it
+            newPath = currentPath.replace(/v\d{2}/, selectedVersion);
+          } else {
+            // No version in the path, add it.
+            // Handles root path (/) and sub-paths (/api/)
+            var basePath = currentPath.endsWith('/') ? currentPath : currentPath + '/';
+            newPath = basePath + selectedVersion + '/';
+          }
+          window.location.pathname = newPath;
+        });
+      }
+    });
+  </script>
+</head>
+
+<body class="index" data-languages="[&quot;shell&quot;]">
+<a href="#" id="nav-button">
       <span>
         NAV
         <img src="images/navbar-cad8cdcb.png" alt="" />
       </span>
-    </a>
-    <div class="toc-wrapper">
-      <img src="images/logo-61f1a509.png" class="logo" alt="" />
-      <div class="version-selector">
-        <label for="version-select">Version:</label>
-        <select id="version-select">
-            <option value="v02" >V02</option>
-            <option value="v01" selected>V01</option>
-        </select>
-      </div>
-        <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-        </div>
-        <div class="search">
-          <label for="input-search" class="visually-hidden">Search</label>
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
-      <ul id="toc" class="toc-list-h1">
-          <li>
-            <a href="#buenno-api-reference" class="toc-h1 toc-link" data-title="Buenno API Reference">Buenno API Reference</a>
-          </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-token-info" class="toc-h2 toc-link" data-title="Get token info">Get token info</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#invitations" class="toc-h1 toc-link" data-title="Invitations">Invitations</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#create-invitation" class="toc-h2 toc-link" data-title="Create invitation">Create invitation</a>
-                  </li>
-                  <li>
-                    <a href="#list-invitations" class="toc-h2 toc-link" data-title="List invitations">List invitations</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#replies" class="toc-h1 toc-link" data-title="Replies">Replies</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#list" class="toc-h2 toc-link" data-title="List">List</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
-          </li>
-      </ul>
-        <ul class="toc-footer">
-            <li><a href='mailto:info@buenno.fi'>Contact us for an API Key</a></li>
-        </ul>
+</a>
+<div class="toc-wrapper">
+  <img src="images/logo-61f1a509.png" class="logo" alt="" />
+  <div class="version-selector">
+    <label for="version-select">Version:</label>
+    <select id="version-select">
+        <option value="v02" >V02</option>
+        <option value="v01" selected>V01</option>
+    </select>
+  </div>
+    <div class="lang-selector">
+          <a href="#" data-language-name="shell">shell</a>
     </div>
-    <div class="page-wrapper">
-      <div class="dark-box"></div>
-      <div class="content">
-        <h1 id='buenno-api-reference'>Buenno API Reference</h1>
+    <div class="search">
+      <label for="input-search" class="visually-hidden">Search</label>
+      <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+    <ul class="search-results"></ul>
+  <ul id="toc" class="toc-list-h1">
+      <li>
+        <a href="#buenno-api-reference" class="toc-h1 toc-link" data-title="Buenno API Reference">Buenno API Reference</a>
+      </li>
+      <li>
+        <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          <ul class="toc-list-h2">
+              <li>
+                <a href="#get-token-info" class="toc-h2 toc-link" data-title="Get token info">Get token info</a>
+              </li>
+          </ul>
+      </li>
+      <li>
+        <a href="#invitations" class="toc-h1 toc-link" data-title="Invitations">Invitations</a>
+          <ul class="toc-list-h2">
+              <li>
+                <a href="#create-invitation" class="toc-h2 toc-link" data-title="Create invitation">Create invitation</a>
+              </li>
+              <li>
+                <a href="#list-invitations" class="toc-h2 toc-link" data-title="List invitations">List invitations</a>
+              </li>
+          </ul>
+      </li>
+      <li>
+        <a href="#replies" class="toc-h1 toc-link" data-title="Replies">Replies</a>
+          <ul class="toc-list-h2">
+              <li>
+                <a href="#list" class="toc-h2 toc-link" data-title="List">List</a>
+              </li>
+          </ul>
+      </li>
+      <li>
+        <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+      </li>
+  </ul>
+    <ul class="toc-footer">
+        <li><a href='mailto:info@buenno.fi'>Contact us for an API Key</a></li>
+    </ul>
+</div>
+<div class="page-wrapper">
+  <div class="dark-box"></div>
+  <div class="content">
+    <h1 id='buenno-api-reference'>Buenno API Reference</h1>
 <p>The Buenno API s organized around REST. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.</p>
 <h1 id='authentication'>Authentication</h1>
 <p>The Buenno API uses API keys to authenticate requests. To send any request to our api, include <code>api-auth-token</code> to the request header.</p>
@@ -905,12 +916,12 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
   </span><span class="nl">"error_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whoops! Something went wrong."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+  </div>
+  <div class="dark-box">
+      <div class="lang-selector">
+            <a href="#" data-language-name="shell">shell</a>
       </div>
-      <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-          </div>
-      </div>
-    </div>
-  </body>
+  </div>
+</div>
+</body>
 </html>
