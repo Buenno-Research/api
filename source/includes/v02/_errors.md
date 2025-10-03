@@ -9,6 +9,7 @@ Code | Possible cause
 404 | Given id not found or invalid
 404 | Method (GET/PUT/POST/PATCH/DELETE) is not allowed
 409 | Created item with a given key already exists
+422 | Unprocessable entry (check error message for details)
 
 > Example of json error response:
 
