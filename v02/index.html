@@ -407,9 +407,9 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='invitations'>Invitations</h1>
-<p>Use following endpoints to invite users to answer question form. Message content to email or SMS is created automatically by Buenno.</p>
+<p>Use following endpoints to invite users to answer a survey. Message content to email or SMS is created automatically by Buenno.</p>
 <h2 id='create-invitation'>Create invitation</h2>
-<p>Invite customers to answer to a survey. Use either email or phone to specify how user should receive the invitation. Use prefilled parameters (pf_) to fill required questions for the customer. If prefilled field is missing, the corresponding question will be asked from the customer.</p>
+<p>Invite customers to answer to a survey. Use either email, phone or deliver_externally to specify how user should receive the invitation. Add required context by filling metadata fields. If suitable field is missing, you can add your own key/value pairs as needed. We do not store empty strings or null values. All metadata values are returned as arrays.</p>
 
 <blockquote>
 <p>POST /api/v02/invitations</p>
@@ -441,7 +441,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
       </span><span class="nl">"product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"product"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+      </span><span class="nl">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"en"</span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
@@ -478,7 +478,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
       </span><span class="nl">"product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"product"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"preferred_language "</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+      </span><span class="nl">"preferred_language "</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"en"</span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
@@ -491,9 +491,11 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </span></code></pre></div><h3 id='exceptions'>Exceptions</h3>
 <p>Returns <code>409</code> if invitation with given identifier exists.</p>
 
-<p>Returns <code>403</code> if no active form is present.</p>
+<p>Returns <code>422</code> if validation fails (e.g. email or phone invalid, or metadata field value is invalid).</p>
 
-<p>Returns <code>404</code> if form_id is invalid.</p>
+<p>Returns <code>403</code> if no active question_form is present.</p>
+
+<p>Returns <code>404</code> if question_form_id is invalid.</p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -530,55 +532,55 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;first_name</td>
 <td>Customer first name</td>
-<td>String</td>
+<td>Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;last_name</td>
 <td>Customer last name</td>
-<td>String</td>
+<td>Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;visit_timestamp</td>
 <td>Time of the customer visit, purchase or interaction (ISO8601: &quot;2025-10-02T06:25:16Z&quot; utc, &quot;2025-10-02T06:25:16+03:00&quot; with timezone)</td>
-<td>String</td>
+<td>Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;location</td>
 <td>Name of the location where interaction happened</td>
-<td>String</td>
+<td>Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;employee_name</td>
-<td>Employee name or names</td>
-<td>String or Array</td>
+<td>Employee name</td>
+<td>Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;product_category</td>
-<td>Product category or categories</td>
-<td>String or Array</td>
+<td>Product category</td>
+<td>Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;product</td>
-<td>Product or products</td>
-<td>String or Array</td>
+<td>Product</td>
+<td>Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;external_id</td>
 <td>External customer id</td>
-<td>String</td>
+<td>Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;preferred_language</td>
 <td>Language to use for this invitation, ISO 639‑1 code</td>
-<td>String</td>
+<td>Array</td>
 <td>No</td>
 </tr>
 </tbody></table>
@@ -610,7 +612,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
         </span><span class="nl">"product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"product"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"preferred_language "</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+        </span><span class="nl">"preferred_language "</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"en"</span><span class="p">]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
@@ -644,7 +646,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </tr>
 <tr>
 <td>limit</td>
-<td>Max number of rows to return, Default = 100, Max = 250</td>
+<td>Max number of rows to return, Default = 100, Max = 1000</td>
 <td>Integer</td>
 <td>No</td>
 </tr>
@@ -689,6 +691,10 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <tr>
 <td>409</td>
 <td>Created item with a given key already exists</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Unprocessable entry (check error message for details)</td>
 </tr>
 </tbody></table>
 
