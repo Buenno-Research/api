@@ -1,4 +1,4 @@
-# Replies
+# Replies (work in progress)
 
 ## List
 
@@ -25,15 +25,15 @@ curl --location --request GET 'https://webreport.buenno.fi/api/v02/replies' \
       "email": "",
       "phone": "00358441234567",
       "metadata": {
-        "first_name": null,
-        "last_name": null,
-        "visit_timestamp": null,
+        "first_name": ["John"],
+        "last_name": ["Doe"],
+        "visit_timestamp": ["2020-12-12T00:00:00Z"],
         "location": null,
         "employee_name": null,
         "product_category": null,
-        "product": null,
+        "product": ["ProductA", "ProductB"],
         "external_id": null,
-        "preferred_language": "en"
+        "preferred_language": ["en"]
       },
       "question_count": 2,
       "score_sum": 125,

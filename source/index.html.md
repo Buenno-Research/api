@@ -10,6 +10,7 @@ includes:
   v02:
     - v02/authentication
     - v02/invitations
+    - v02/replies
     - v02/errors
   v01:
     - v01/authentication
