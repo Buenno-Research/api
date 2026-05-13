@@ -2,6 +2,14 @@
 
 The Buenno API uses following HTTP status codes on errors.
 
+> Example of json error response:
+
+```json
+{
+  "error_message": "Invitation with the given identifier exists."
+}
+```
+
 Code | Possible cause
 --------- | ---- 
 401 | api-auth-token not found or invalid
@@ -11,10 +19,4 @@ Code | Possible cause
 409 | Conflict — given identifier already exists, or cannot be verified (see endpoint-specific notes)
 422 | Unprocessable entry (check error message for details)
 
-> Example of json error response:
 
-```json
-{
-  "error_message": "Whoops! Something went wrong."
-}
-```
