@@ -415,7 +415,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='invitations'>Invitations</h1>
-<p>Use following endpoints to invite users to answer a survey. Message content to email or SMS is created automatically by Buenno.</p>
+<p>Use following endpoints to invite users to answer a survey. Message content for email or SMS is created automatically by Buenno.</p>
 <h2 id='create-invitation'>Create invitation</h2>
 <p>Invite customers to answer to a survey. Use either email, phone or deliver_externally to specify how user should receive the invitation. Add required context by filling metadata fields. If suitable field is missing, you can add your own key/value pairs as needed. We do not store empty strings or null values. All metadata values are returned as arrays.</p>
 
@@ -424,11 +424,17 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </blockquote>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://webreport.buenno.fi/api/v02/invitations/'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'phone=00358441234567'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'metadata[first_name]=John'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'metadata[last_name]=Doe'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'metadata[product][]=ProductA'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'metadata[product][]=ProductB'</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
+  "invitation": {
+    "phone": "00358441234567",
+    "metadata": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "product": ["ProductA", "ProductB"]
+    }
+  }
+}'</span>
 </code></pre></div>
 <blockquote>
 <p>Response</p>
@@ -438,7 +444,51 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00358441234567"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"question_form_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"delivery_method"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"invitation_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://buenno.fi/i/0b6a5ed887f3b89acd08"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"John"</span><span class="p">],</span><span class="w">
+      </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Doe"</span><span class="p">],</span><span class="w">
+      </span><span class="nl">"visit_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"employee_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ProductA"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ProductB"</span><span class="p">],</span><span class="w">
+      </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"en"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-19T00:00:00+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"answered_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+02:00"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>POST /api/v02/invitations</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://webreport.buenno.fi/api/v02/invitations/'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
+  "invitation": {
+    "deliver_externally": true
+  }
+}'</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"invitation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"question_form_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"delivery_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivered_externally"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"invitation_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://buenno.fi/i/0b6a5ed887f3b89acd08"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -451,60 +501,23 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
       </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"en"</span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-19T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-19T00:00:00+02:00"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"answered_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<blockquote>
-<p>POST /api/v02/invitations</p>
-</blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://webreport.buenno.fi/api/v02/invitations/'</span> <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
-<span class="nt">-d</span> <span class="s1">'deliver_externally=true'</span>
-</code></pre></div>
-<blockquote>
-<p>Response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"invitation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00358441234567"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"delivery_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivered_externally"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"invitation_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://buenno.fi/i/0b6a5ed887f3b89acd08"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"visit_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"employee_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"product"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"preferred_language "</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"en"</span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-19T00:00:00+00:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"answered_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+02:00"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='exceptions'>Exceptions</h3>
-<p>Returns <code>409</code> if invitation with given identifier exists.</p>
+<p>Returns <code>409</code> if invitation with the given identifier exists, or if the identifier is nonverifiable.</p>
 
 <p>Returns <code>422</code> if validation fails (e.g. email or phone invalid, or metadata field value is invalid).</p>
 
 <p>Returns <code>403</code> if no active question_form is present.</p>
 
 <p>Returns <code>404</code> if question_form_id is invalid.</p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id='request-body'>Request Body</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -540,65 +553,171 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;first_name</td>
 <td>Customer first name</td>
-<td>Array</td>
+<td>String / Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;last_name</td>
 <td>Customer last name</td>
-<td>Array</td>
+<td>String / Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;visit_timestamp</td>
 <td>Time of the customer visit, purchase or interaction (ISO8601: &quot;2025-10-02T06:25:16Z&quot; utc, &quot;2025-10-02T06:25:16+03:00&quot; with timezone)</td>
-<td>Array</td>
+<td>Timestamp / Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;location</td>
 <td>Name of the location where interaction happened</td>
-<td>Array</td>
+<td>String / Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;employee_name</td>
 <td>Employee name</td>
-<td>Array</td>
+<td>String / Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;product_category</td>
 <td>Product category</td>
-<td>Array</td>
+<td>String / Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;product</td>
 <td>Product</td>
-<td>Array</td>
+<td>String / Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;external_id</td>
 <td>External customer id</td>
-<td>Array</td>
+<td>String / Array</td>
 <td>No</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;preferred_language</td>
 <td>Language to use for this invitation, ISO 639‑1 code</td>
-<td>Array</td>
+<td>String / Array</td>
 <td>No</td>
 </tr>
 </tbody></table>
+<h3 id='metadata'>Metadata</h3>
+<p>The <code>metadata</code> object accepts any keys you choose. Currently supported value types are <code>string</code>, <code>integer</code>, <code>numeric</code>, <code>timestamp</code>, and <code>boolean</code>.</p>
+
+<p>When a new key is sent for the first time, the system infers its data type from the value and stores it. After that, the same key can no longer accept values of a different type.</p>
+
+<p>A handful of common keys are pre-created (see the Request Body table above). All of them are of type <code>string</code>, except <code>visit_timestamp</code>, which is a <code>timestamp</code>.</p>
+
+<p>Each value can be submitted as a single value or as an array of values of the same type. All values are returned as arrays.</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Helsinki"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"ProductA"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ProductB"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"order_total"</span><span class="p">:</span><span class="w"> </span><span class="mi">4999</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"visit_timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-10-02T06:25:16Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"is_returning_customer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Note that filtering on the reports is currently supported by the following predefined metadata keys:</p>
+
+<ul>
+<li><code>visit_timestamp</code></li>
+<li><code>location</code></li>
+<li><code>employee_name</code></li>
+<li><code>product_category</code></li>
+<li><code>product</code></li>
+<li><code>external_id</code></li>
+</ul>
+<h3 id='response-fields'>Response Fields</h3>
+<p>Both Create and List endpoints return invitation objects with the same shape.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Unique invitation id</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Recipient email if email delivery was requested</td>
+<td>String / null</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>Recipient phone if SMS delivery was requested</td>
+<td>String / null</td>
+</tr>
+<tr>
+<td>question_form_id</td>
+<td>Id of the survey this invitation belongs to</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>delivery_method</td>
+<td>Channel used. One of <code>delivered_by_sms</code>, <code>delivered_by_email</code>, <code>delivered_externally</code>. Null on freshly created SMS/email invitations until the sent</td>
+<td>String / null</td>
+</tr>
+<tr>
+<td>invitation_link</td>
+<td>Unique URL the recipient opens to answer the survey.</td>
+<td>String</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>Customer metadata (see Metadata above). All values are returned as arrays.</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>scheduled_at</td>
+<td>When the invitation is scheduled for sending.</td>
+<td>Timestamp / null</td>
+</tr>
+<tr>
+<td>sent_at</td>
+<td>When the invitation is actually sent.</td>
+<td>Timestamp / null</td>
+</tr>
+<tr>
+<td>opened_at</td>
+<td>When the recipient first opened the invitation link.</td>
+<td>Timestamp / null</td>
+</tr>
+<tr>
+<td>answered_at</td>
+<td>When the recipient submitted the reply.</td>
+<td>Timestamp / null</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>When the invitation was created.</td>
+<td>Timestamp</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>Last modification time.</td>
+<td>Timestamp</td>
+</tr>
+</tbody></table>
+
+<p>All timestamps are ISO 8601 formatted in the server&#39;s local timezone (Europe/Helsinki, <code>+02:00</code> in winter / <code>+03:00</code> during DST).</p>
 <h2 id='list-invitations'>List invitations</h2>
 <p>Lists created invitations.</p>
 
 <blockquote>
 <p>GET /api/v02/invitations</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://webreport.buenno.fi/api/v02/invitations/'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://webreport.buenno.fi/api/v02/invitations/?from=2020-12-17T00:00:00%2B02:00&amp;to=2020-12-19T00:00:00%2B02:00&amp;limit=100'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span>
 </code></pre></div>
 <blockquote>
@@ -611,6 +730,8 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
       </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00358441234567"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"question_form_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"delivery_method"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"invitation_link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://buenno.fi/i/0b6a5ed887f3b89acd08"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -620,18 +741,21 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
         </span><span class="nl">"product_category"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"product"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"preferred_language "</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"en"</span><span class="p">]</span><span class="w">
+        </span><span class="nl">"preferred_language"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"en"</span><span class="p">]</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-19T00:00:00+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"scheduled_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+02:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+02:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-19T00:00:00+02:00"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"answered_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+00:00"</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+02:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-18T00:00:00+02:00"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='url-parameters-2'>URL Parameters</h3>
+</span></code></pre></div><h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -642,13 +766,13 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </thead><tbody>
 <tr>
 <td>from</td>
-<td>Invitations created after date</td>
+<td>Return invitations created after this timestamp (exclusive)</td>
 <td>Date time ISO 8601</td>
 <td>No</td>
 </tr>
 <tr>
 <td>to</td>
-<td>Invitations created before date</td>
+<td>Return invitations created before this timestamp (exclusive)</td>
 <td>Date time ISO 8601</td>
 <td>No</td>
 </tr>
@@ -899,7 +1023,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </tr>
 <tr>
 <td>409</td>
-<td>Created item with a given key already exists</td>
+<td>Conflict — given identifier already exists, or cannot be verified (see endpoint-specific notes)</td>
 </tr>
 <tr>
 <td>422</td>
