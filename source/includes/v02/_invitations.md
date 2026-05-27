@@ -57,23 +57,40 @@ curl --location --request POST 'https://webreport.buenno.fi/api/v02/invitations/
 ```
 ### Request Body
 
-| Parameter                             | Description                                                                                                                                            | Type              | Mandatory   |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|-------------|
-| phone                                 | Phone number to send survey invitation. Phone number should include country code where + is replaced with 00. E.g +358441234567 becomes 00358441234567 | String            | Conditional |
-| email                                 | Email to send survey invitation                                                                                                                        | String            | Conditional |
-| deliver_externally                    | If true, invitation is not sent by Buenno. An invitation can be created without email or phone                                                         | Boolean           | Conditional |
-| metadata                              | Additional customer information (use the fields below when applicable, or add your own key/value pairs as needed)                                      | Object            | No          |
-| &nbsp;&nbsp;•&nbsp;first_name         | Customer first name                                                                                                                                    | String / Array | No          |
-| &nbsp;&nbsp;•&nbsp;last_name          | Customer last name                                                                                                                                     | String / Array | No          |
-| &nbsp;&nbsp;•&nbsp;visit_timestamp    | Time of the customer visit, purchase or interaction (ISO8601: "2025-10-02T06:25:16Z" utc, "2025-10-02T06:25:16+03:00" with timezone)                   | Timestamp / Array | No          |
-| &nbsp;&nbsp;•&nbsp;location           | Name of the location where interaction happened                                                                                                        | String / Array | No          |
-| &nbsp;&nbsp;•&nbsp;employee_name      | Employee name                                                                                                                                          | String / Array | No          |
-| &nbsp;&nbsp;•&nbsp;product_category   | Product category                                                                                                                                       | String / Array | No          |
-| &nbsp;&nbsp;•&nbsp;product            | Product                                                                                                                                                | String / Array | No          |
-| &nbsp;&nbsp;•&nbsp;external_id        | External customer id                                                                                                                                   | String / Array | No          |
-| &nbsp;&nbsp;•&nbsp;preferred_language | Language to use for this invitation, ISO 639‑1 code                                                                                                    | String / Array | No          |
+| Parameter                             | Description                                                                                                                                             | Type              | Mandatory   |
+|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|-------------|
+| phone                                 | Phone number to send survey invitation. Phone number should include country code where + is replaced with 00. E.g +358441234567 becomes 00358441234567  | String            | Conditional |
+| email                                 | Email to send survey invitation                                                                                                                         | String            | Conditional |
+| deliver_externally                    | If true, invitation is not sent by Buenno. An invitation can be created without email or phone                                                          | Boolean           | Conditional |
+| metadata                              | Additional customer information (use the fields below when applicable, or add your own key/value pairs as needed)                                       | Object            | No          |
+| &nbsp;&nbsp;•&nbsp;first_name         | Customer first name                                                                                                                                     | String / Array | No          |
+| &nbsp;&nbsp;•&nbsp;last_name          | Customer last name                                                                                                                                      | String / Array | No          |
+| &nbsp;&nbsp;•&nbsp;visit_timestamp    | Time of the customer visit, purchase or interaction (ISO8601: "2025-10-02T06:25:16Z" utc, "2025-10-02T06:25:16+03:00" with timezone)                    | Timestamp / Array | No          |
+| &nbsp;&nbsp;•&nbsp;location           | Name of the location where interaction happened                                                                                                         | String / Array | No          |
+| &nbsp;&nbsp;•&nbsp;location_external_id | Customer-supplied integer id for the location. Unique per customer when set. May be sent alongside `location`; if a different store already uses the same name with another `location_external_id`, the request is rejected with `422`. | Integer        | No          |
+| &nbsp;&nbsp;•&nbsp;employee_name      | Employee name                                                                                                                                           | String / Array | No          |
+| &nbsp;&nbsp;•&nbsp;product_category   | Product category                                                                                                                                        | String / Array | No          |
+| &nbsp;&nbsp;•&nbsp;product            | Product                                                                                                                                                 | String / Array | No          |
+| &nbsp;&nbsp;•&nbsp;external_id        | External customer id                                                                                                                                    | String / Array | No          |
+| &nbsp;&nbsp;•&nbsp;preferred_language | Language to use for this invitation, ISO 639‑1 code                                                                                                     | String / Array | No          |
 
 
+> POST /api/v02/invitations
+
+```shell
+curl --location --request POST 'https://webreport.buenno.fi/api/v02/invitations/' \
+--header 'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' \
+--header 'Content-Type: application/json' \
+--data '{
+  "invitation": {
+    "phone": "00358441234567",
+    "metadata": {
+      "location": "Helsinki",
+      "location_external_id": 245
+    }
+  }
+}'
+```
 
 > POST /api/v02/invitations
 
@@ -181,7 +198,7 @@ Each value can be submitted as a single value or as an array of values of the sa
 Note that filtering on the reports is currently supported by the following predefined metadata keys:
 
 - `visit_timestamp`
-- `location`
+- `location`/`location_external_id`
 - `employee_name`
 - `product_category`
 - `product`
