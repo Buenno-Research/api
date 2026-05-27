@@ -524,6 +524,12 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 <td>No</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;•&nbsp;location_external_id</td>
+<td>Customer-supplied integer id for the location. Unique per customer when set. May be sent alongside <code>location</code>; if a different store already uses the same name with another <code>location_external_id</code>, the request is rejected with <code>422</code>.</td>
+<td>Integer</td>
+<td>No</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;•&nbsp;employee_name</td>
 <td>Employee name</td>
 <td>String / Array</td>
@@ -555,6 +561,22 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </tr>
 </tbody></table>
 
+<blockquote>
+<p>POST /api/v02/invitations</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://webreport.buenno.fi/api/v02/invitations/'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'api-auth-token: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
+  "invitation": {
+    "phone": "00358441234567",
+    "metadata": {
+      "location": "Helsinki",
+      "location_external_id": 245
+    }
+  }
+}'</span>
+</code></pre></div>
 <blockquote>
 <p>POST /api/v02/invitations</p>
 </blockquote>
@@ -709,7 +731,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 
 <ul>
 <li><code>visit_timestamp</code></li>
-<li><code>location</code></li>
+<li><code>location</code>/<code>location_external_id</code></li>
 <li><code>employee_name</code></li>
 <li><code>product_category</code></li>
 <li><code>product</code></li>
