@@ -179,7 +179,7 @@ When a new key is sent for the first time, the system infers its data type from 
 
 A handful of common keys are pre-created (see the Request Body table above). All of them are of type `string`, except `visit_timestamp`, which is a `timestamp`.
 
-Each value can be submitted as a single value or as an array of values of the same type. All values are returned as arrays.
+Each value can be submitted as a single value or as an array of values of the same type, except for `location` and `location_external_id`, which accept single values only. All values are returned as arrays.
 
 > Metadata example
 
