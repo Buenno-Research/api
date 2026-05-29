@@ -519,8 +519,8 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 </tr>
 <tr>
 <td>&nbsp;&nbsp;•&nbsp;location</td>
-<td>Name of the location where interaction happened</td>
-<td>String / Array</td>
+<td>Name of the location where interaction happened. Single value only — arrays are not accepted for this key.</td>
+<td>String</td>
 <td>No</td>
 </tr>
 <tr>
@@ -712,7 +712,7 @@ curl <span class="nt">--location</span> <span class="nt">--request</span> GET <s
 
 <p>A handful of common keys are pre-created (see the Request Body table above). All of them are of type <code>string</code>, except <code>visit_timestamp</code>, which is a <code>timestamp</code>.</p>
 
-<p>Each value can be submitted as a single value or as an array of values of the same type. All values are returned as arrays.</p>
+<p>Each value can be submitted as a single value or as an array of values of the same type, except for <code>location</code> and <code>location_external_id</code>, which accept single values only. All values are returned as arrays.</p>
 
 <blockquote>
 <p>Metadata example</p>
