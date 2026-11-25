@@ -11,12 +11,12 @@ meta:
   - property: og:type
     content: website
   - property: og:url
-    content: https://buenno-research.github.io/api/mcp.html
+    content: https://docs.buenno.fi/mcp.html
   - name: twitter:card
     content: summary
 
 toc_footers:
-  - <a href='/api/'>Buenno API reference</a>
+  - <a href='/'>Buenno API reference</a>
   - <a href='mailto:info@buenno.fi'>Contact us to enable the AI Suite</a>
 
 search: true
