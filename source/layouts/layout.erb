@@ -99,14 +99,16 @@ under the License.
 </a>
 <div class="toc-wrapper">
   <%= image_tag "logo.png", class: 'logo' %>
+  <% if available_versions.any? %>
   <div class="version-selector">
     <label for="version-select">Version:</label>
     <select id="version-select">
-      <% current_page.data.versions.each do |v| %>
+      <% available_versions.each do |v| %>
         <option value="<%= v %>" <%= v == version ? 'selected' : '' %>><%= v.upcase %></option>
       <% end %>
     </select>
   </div>
+  <% end %>
   <% if language_tabs.any? %>
     <div class="lang-selector">
       <% language_tabs.each do |lang| %>
