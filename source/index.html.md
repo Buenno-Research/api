@@ -23,6 +23,7 @@ language_tabs:
 
 toc_footers:
   - <a href='mailto:info@buenno.fi'>Contact us for an API Key</a>
+  - <a href='/api/mcp.html'>Buenno MCP</a>
 
 search: true
 code_clipboard: true
