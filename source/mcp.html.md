@@ -99,7 +99,7 @@ To disconnect, use **Connected apps** in Buenno (below), or remove the connector
 
 When you connect, the Buenno sign-in page lists your surveys, grouped by organisation. All are ticked; untick the ones the app shouldn't see. Keep **Also new surveys I get access to** ticked to include surveys you get later.
 
-To change this later, open **Settings → Connected apps** in Buenno. For each app you see when it was connected, when it was last used and how many questions it asked. **Change surveys** updates the choice from the app's next question. **Disconnect** ends the app's access at once; it then has to ask you to connect again.
+To change this later, open **Account settings → Connected apps** in Buenno. For each app you see when it was connected, when it was last used and how many questions it asked. **Change surveys** updates the choice from the app's next question. **Disconnect** ends the app's access at once; it then has to ask you to connect again.
 
 Your choice can only narrow what the app sees: never more than you see in the Buenno report.
 
@@ -163,7 +163,7 @@ Problem | What to do
 ---- | ----
 The sign-in page does not open, or shows an error | Remove the connector in your AI client and add it again. Check that you use `https://webreport.buenno.fi/mcp` exactly.
 Sign-in is refused, or no surveys are listed | The Buenno AI Suite is not switched on for your organisation, or your account has no survey access. Ask your Buenno contact person.
-A survey or store is missing | The connector shows what your Buenno account can see, limited to the surveys you chose for the app (**Settings → Connected apps**) and the surveys your organisation opens to AI apps.
+A survey or store is missing | The connector shows what your Buenno account can see, limited to the surveys you chose for the app (**Account settings → Connected apps**) and the surveys your organisation opens to AI apps.
 The assistant says the data is being prepared | Buenno is preparing the numbers for that period. The assistant tries again after a few seconds; ask again if it doesn't.
 The assistant says there were too many requests | Wait a minute and ask again.
 Your AI client asks you to connect again | Your sign-in expired. Click **Connect** and sign in.
@@ -189,7 +189,7 @@ You see the same as in the Buenno webreport. You sign in with your own Buenno lo
 
 ## Can I limit what an AI app sees?
 
-Yes. When you connect, you choose which surveys the app may see, and you can change that later in **Settings → Connected apps**. Your organisation's admins can also close surveys, comments or individual answers to all AI apps.
+Yes. When you connect, you choose which surveys the app may see, and you can change that later in **Account settings → Connected apps**. Your organisation's admins can also close surveys, comments or individual answers to all AI apps.
 
 ## Does Buenno receive my conversation with the AI assistant?
 
@@ -245,7 +245,7 @@ No. Once the connector is added, you just ask questions in the chat. The assista
    "name": "Can I limit what an AI app sees?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Yes. When you connect, you choose which surveys the app may see, and you can change that later in Settings → Connected apps. Your organisation's admins can also close surveys, comments or individual answers to all AI apps."
+    "text": "Yes. When you connect, you choose which surveys the app may see, and you can change that later in Account settings → Connected apps. Your organisation's admins can also close surveys, comments or individual answers to all AI apps."
    }
   },
   {
