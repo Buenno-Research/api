@@ -105,7 +105,7 @@ Your choice can only narrow what the app sees: never more than you see in the Bu
 
 # For admins
 
-Organisation admins manage AI apps in the **Control Center → AI Suite**. The menu item appears once the Buenno AI Suite is switched on for your organisation.
+Organisation admins manage AI apps in the **Control Center → AI assistants**. The menu item appears once Buenno has switched AI assistants on for your organisation.
 
 ## Settings
 
