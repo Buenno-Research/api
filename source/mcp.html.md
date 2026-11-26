@@ -57,7 +57,14 @@ Every answer states the period and the number of responses it is based on, so yo
 
 ## Charts and reports
 
-* **Charts in the chat:** the assistant adds a chart when it helps the answer, such as a trend, a store ranking or the main themes, and always in Buenno's style. Hover over a chart to see each value and the number of answers behind it. Clients that can't show Buenno charts draw their own from the same numbers, in Buenno's colours.
+* **Charts in the chat:** the assistant adds a chart when it helps the answer, such as a trend, a store ranking or the main themes, and always in Buenno's style. Clients that can't show Buenno charts draw their own from the same numbers, in Buenno's colours.
+* **Explore a chart without asking again:**
+  * hover for each value and the number of answers behind it;
+  * switch between NPS, CSAT and the overall score, change the period, or turn the comparison on or off;
+  * sort, show more or fewer rows, filter by name, zoom into a few months, or see the numbers as a table;
+  * switch to a plain style without Buenno's colours.
+
+  Charts follow your app's light or dark mode. Every change uses your own Buenno access, as the assistant's questions do.
 * **The full Buenno report inside the chat,** with summary, charts and filters.
 * **Your own reports:** ask for a document, PDF, slides or a dashboard for a period, and the assistant builds it from the complete report data, in Buenno's look.
 
