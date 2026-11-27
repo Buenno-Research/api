@@ -81,7 +81,7 @@ Try: *"Make slides of last quarter's results for our management meeting"* or *"B
 ## Connect in Claude
 
 1. In Claude, open **Settings → Connectors**.
-2. Find **Buenno** in the directory, or choose **Add custom connector** and enter the connector URL `https://webreport.buenno.fi/mcp`.
+2. Choose **Add custom connector**, name it Buenno and enter the connector URL `https://webreport.buenno.fi/mcp`.
 3. Click **Connect**. The Buenno sign-in page opens: sign in with your Buenno login, choose which surveys Claude may see, and allow access.
 4. Start a new chat and ask a question about your customer feedback.
 
@@ -90,7 +90,7 @@ On some plans, an owner or admin may need to add the connector for the organisat
 ## Connect in ChatGPT
 
 1. In ChatGPT, open **Settings → Apps** (called **Connectors** on some plans).
-2. Find **Buenno**, or create a custom app or connector with the connector URL `https://webreport.buenno.fi/mcp` and OAuth as the authentication.
+2. Create a custom app or connector named Buenno, with the connector URL `https://webreport.buenno.fi/mcp` and OAuth as the authentication.
 3. Click **Connect**. The Buenno sign-in page opens: sign in with your Buenno login, choose which surveys ChatGPT may see, and allow access.
 4. Start a new chat, choose Buenno, and ask a question about your customer feedback.
 
