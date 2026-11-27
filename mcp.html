@@ -382,6 +382,20 @@
               <li>
                 <a href="#staying-signed-in" class="toc-h2 toc-link" data-title="Staying signed in">Staying signed in</a>
               </li>
+              <li>
+                <a href="#choose-what-each-app-sees" class="toc-h2 toc-link" data-title="Choose what each app sees">Choose what each app sees</a>
+              </li>
+          </ul>
+      </li>
+      <li>
+        <a href="#for-admins" class="toc-h1 toc-link" data-title="For admins">For admins</a>
+          <ul class="toc-list-h2">
+              <li>
+                <a href="#settings" class="toc-h2 toc-link" data-title="Settings">Settings</a>
+              </li>
+              <li>
+                <a href="#connections" class="toc-h2 toc-link" data-title="Connections">Connections</a>
+              </li>
           </ul>
       </li>
       <li>
@@ -407,6 +421,9 @@
               </li>
               <li>
                 <a href="#who-can-see-what" class="toc-h2 toc-link" data-title="Who can see what?">Who can see what?</a>
+              </li>
+              <li>
+                <a href="#can-i-limit-what-an-ai-app-sees" class="toc-h2 toc-link" data-title="Can I limit what an AI app sees?">Can I limit what an AI app sees?</a>
               </li>
               <li>
                 <a href="#does-buenno-receive-my-conversation-with-the-ai-assistant" class="toc-h2 toc-link" data-title="Does Buenno receive my conversation with the AI assistant?">Does Buenno receive my conversation with the AI assistant?</a>
@@ -462,10 +479,20 @@
 </ul>
 <h2 id='charts-and-reports'>Charts and reports</h2>
 <ul>
-<li><strong>Charts in the chat:</strong> ask for a chart and the assistant shows one in Buenno&#39;s style, such as a trend, a store ranking or the main themes. Clients that can&#39;t show Buenno charts draw their own from the same numbers.</li>
-<li><strong>The full Buenno report inside the chat,</strong> with summary, charts and filters.</li>
-<li><strong>Your own reports:</strong> ask for a document, PDF, slides or a dashboard for a period, and the assistant builds it from the complete report data, in Buenno&#39;s look.</li>
+<li><strong>Charts in the chat:</strong> the assistant adds a chart when it helps the answer, such as a trend, a store ranking or the main themes, and always in Buenno&#39;s style. Clients that can&#39;t show Buenno charts draw their own from the same numbers, in Buenno&#39;s colours.</li>
+<li><strong>Explore a chart without asking again:</strong>
+
+<ul>
+<li>hover for each value and the number of answers behind it;</li>
+<li>switch between NPS, CSAT and the overall score, change the period, or turn the comparison on or off;</li>
+<li>sort, show more or fewer rows, filter by name, zoom into a few months, or see the numbers as a table;</li>
+<li>switch to a plain style without Buenno&#39;s colours.</li>
+</ul></li>
 </ul>
+
+<p>Charts follow your app&#39;s light or dark mode. Every change uses your own Buenno access, as the assistant&#39;s questions do.
+* <strong>The full Buenno report inside the chat,</strong> with summary, charts and filters.
+* <strong>Your own reports:</strong> ask for a document, PDF, slides or a dashboard for a period, and the assistant builds it from the complete report data, in Buenno&#39;s look.</p>
 
 <p>Try: <em>&quot;Make slides of last quarter&#39;s results for our management meeting&quot;</em> or <em>&quot;Build a dashboard of our NPS by area.&quot;</em></p>
 <h1 id='getting-started'>Getting started</h1><h2 id='requirements'>Requirements</h2>
@@ -478,7 +505,7 @@
 <ol>
 <li>In Claude, open <strong>Settings → Connectors</strong>.</li>
 <li>Find <strong>Buenno</strong> in the directory, or choose <strong>Add custom connector</strong> and enter the connector URL <code>https://webreport.buenno.fi/mcp</code>.</li>
-<li>Click <strong>Connect</strong>. The Buenno sign-in page opens: sign in with your Buenno login and allow access.</li>
+<li>Click <strong>Connect</strong>. The Buenno sign-in page opens: sign in with your Buenno login, choose which surveys Claude may see, and allow access.</li>
 <li>Start a new chat and ask a question about your customer feedback.</li>
 </ol>
 
@@ -487,7 +514,7 @@
 <ol>
 <li>In ChatGPT, open <strong>Settings → Apps</strong> (called <strong>Connectors</strong> on some plans).</li>
 <li>Find <strong>Buenno</strong>, or create a custom app or connector with the connector URL <code>https://webreport.buenno.fi/mcp</code> and OAuth as the authentication.</li>
-<li>Click <strong>Connect</strong>. The Buenno sign-in page opens: sign in with your Buenno login and allow access.</li>
+<li>Click <strong>Connect</strong>. The Buenno sign-in page opens: sign in with your Buenno login, choose which surveys ChatGPT may see, and allow access.</li>
 <li>Start a new chat, choose Buenno, and ask a question about your customer feedback.</li>
 </ol>
 
@@ -495,7 +522,29 @@
 <h2 id='staying-signed-in'>Staying signed in</h2>
 <p>The connector keeps you signed in in the background, as long as your Buenno login is allowed to. When the sign-in expires, or when your Buenno password or access changes, your AI client asks you to connect again.</p>
 
-<p>To disconnect, remove the connector in your AI client&#39;s settings.</p>
+<p>To disconnect, use <strong>Connected apps</strong> in Buenno (below), or remove the connector in your AI client&#39;s settings.</p>
+<h2 id='choose-what-each-app-sees'>Choose what each app sees</h2>
+<p>When you connect, the Buenno sign-in page lists your surveys, grouped by organisation. All are ticked; untick the ones the app shouldn&#39;t see. Keep <strong>Also new surveys I get access to</strong> ticked to include surveys you get later.</p>
+
+<p>To change this later, open <strong>Account settings → Connected apps</strong> in Buenno. For each app you see when it was connected, when it was last used and how many questions it asked. <strong>Change surveys</strong> updates the choice from the app&#39;s next question. <strong>Disconnect</strong> ends the app&#39;s access at once; it then has to ask you to connect again.</p>
+
+<p>Your choice can only narrow what the app sees: never more than you see in the Buenno report.</p>
+<h1 id='for-admins'>For admins</h1>
+<p>Organisation admins manage AI apps in the <strong>Control Center → AI assistants</strong>. The menu item appears once Buenno has switched AI assistants on for your organisation.</p>
+<h2 id='settings'>Settings</h2>
+<ul>
+<li><strong>Let people connect AI apps.</strong> Off blocks every AI app at once; switching it on again restores the existing connections.</li>
+<li><strong>Surveys open to AI apps.</strong> Close a survey to keep it away from every AI app, for example an employee survey. <strong>New surveys are open to AI apps</strong> decides for surveys created later.</li>
+<li><strong>What AI apps may read.</strong> Scores, trends and rankings are always included. Open comments and themes, and individual answers, can each be switched off.</li>
+<li><strong>Who may connect.</strong> Limit connecting to certain roles. No role ticked means every role may connect.</li>
+<li><strong>Which AI apps.</strong> Allow only apps that prove where they come from, such as Claude and ChatGPT, or any app that supports Buenno sign-in. Apps that registered themselves lose access at once when you switch to the first option.</li>
+</ul>
+
+<p>These settings only narrow access. A person never sees more than their own access in the Buenno report allows.</p>
+<h2 id='connections'>Connections</h2>
+<p>The <strong>Connections</strong> tab shows who in your organisation has connected which AI app, how many of your surveys each connection can read, when it was last used and how many questions it asked about your surveys in the last 30 days. Admins see usage, not the questions themselves.</p>
+
+<p><strong>Disconnect</strong> ends one person&#39;s app; <strong>Disconnect all</strong> ends every AI app of everyone listed. A disconnect ends the app in every Buenno organisation the person belongs to. They can connect again at any time.</p>
 <h1 id='tools'>Tools</h1>
 <p>The connector gives the AI assistant these read-only tools. You don&#39;t call them yourself: the assistant picks the right ones for your question.</p>
 
@@ -575,7 +624,8 @@
 <h1 id='security-and-privacy'>Security and privacy</h1>
 <ul>
 <li><strong>Read-only.</strong> The connector never changes your Buenno data.</li>
-<li><strong>Your own access.</strong> You sign in with your Buenno login (OAuth 2.0). Every answer is limited to the surveys and stores your account can see in Buenno.</li>
+<li><strong>Your own access.</strong> You sign in with your Buenno login (OAuth 2.0). Every answer is limited to the surveys and stores your account can see in Buenno, and to the surveys you chose for the app.</li>
+<li><strong>Your organisation decides.</strong> Admins choose which surveys and data AI apps may read, who may connect and which apps are allowed.</li>
 <li><strong>No conversation data.</strong> Buenno does not receive your chat with the assistant, only the tool calls it makes, such as &quot;NPS for survey X in October&quot;.</li>
 <li><strong>Audit log.</strong> For security and support, Buenno logs each tool call: who made it, which tool, its arguments, the result status and how long it took.</li>
 <li><strong>Customer comments</strong> are returned as data. The assistant is told never to follow instructions written in a comment.</li>
@@ -597,7 +647,7 @@
 </tr>
 <tr>
 <td>A survey or store is missing</td>
-<td>The connector shows what your Buenno account can see.</td>
+<td>The connector shows what your Buenno account can see, limited to the surveys you chose for the app (<strong>Account settings → Connected apps</strong>) and the surveys your organisation opens to AI apps.</td>
 </tr>
 <tr>
 <td>The assistant says the data is being prepared</td>
@@ -624,6 +674,8 @@
 <p>No. Buenno MCP is read-only. It never changes your Buenno data.</p>
 <h2 id='who-can-see-what'>Who can see what?</h2>
 <p>You see the same as in the Buenno webreport. You sign in with your own Buenno login, and every answer is limited to the surveys and stores your account can see there. Colleagues with different access see different results.</p>
+<h2 id='can-i-limit-what-an-ai-app-sees'>Can I limit what an AI app sees?</h2>
+<p>Yes. When you connect, you choose which surveys the app may see, and you can change that later in <strong>Account settings → Connected apps</strong>. Your organisation&#39;s admins can also close surveys, comments or individual answers to all AI apps.</p>
 <h2 id='does-buenno-receive-my-conversation-with-the-ai-assistant'>Does Buenno receive my conversation with the AI assistant?</h2>
 <p>No. Buenno only receives the tool calls the assistant makes, such as a request for NPS for one survey in October, not your chat.</p>
 <h2 id='can-it-make-charts-slides-or-reports'>Can it make charts, slides or reports?</h2>
@@ -666,6 +718,14 @@
    "acceptedAnswer": {
     "@type": "Answer",
     "text": "You see the same as in the Buenno webreport. You sign in with your own Buenno login, and every answer is limited to the surveys and stores your account can see there. Colleagues with different access see different results."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I limit what an AI app sees?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. When you connect, you choose which surveys the app may see, and you can change that later in Account settings → Connected apps. Your organisation's admins can also close surveys, comments or individual answers to all AI apps."
    }
   },
   {
